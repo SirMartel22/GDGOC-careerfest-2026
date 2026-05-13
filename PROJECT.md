@@ -1,0 +1,9 @@
+# CareerFest 2026 — Application Flow
+
+The CareerFest 2026 platform is a single Next.js web application serving two live pages and one hidden page. The main landing page (`/`) is the Innovation Challenge page — a single scrollable experience that introduces the challenge, explains how it works, lists the prizes and timeline, and gives students everything they need to participate without leaving the page. Registration happens inline via an embedded Google Form, and project submission happens through a form further down the same page.
+
+When a participant submits a project, their thumbnail image is uploaded directly from the browser to Cloudinary, which returns a permanent public URL. That URL, along with all the other form fields — builder name, project name, description, live URL, and team members — is saved as a single row in a Supabase PostgreSQL database. No server is involved in this process; the browser talks directly to both services using public, scoped credentials.
+
+The projects gallery (`/projects`) is a separate page where all submitted projects are displayed. Next.js fetches the project rows from Supabase on the server at request time and passes them to the client. From there, participants can search by builder name or project name, and sort by time submitted. Each project card links directly to the participant's live project. Images load independently from Cloudinary's CDN in parallel, so the page is never blocked waiting for them.
+
+The Main CareerFest Day page (`/careerfest`), covering the June 15 event, is fully built but not publicly linked. It goes live around June 8, 2026, by adding it to the navigation — no code changes required beyond that. This keeps the platform focused on the Innovation Challenge during the active build window, while the full CareerFest experience becomes available closer to the main event day.
