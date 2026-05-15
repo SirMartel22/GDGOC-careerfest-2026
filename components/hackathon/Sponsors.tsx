@@ -1,0 +1,40 @@
+import Image from "next/image";
+import Link from "next/link"
+
+const Sponsors = () => {
+  return (
+    <section className="py-32 bg-[#34A853]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+          <div className="space-y-6">
+            <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border-2 border-white/40 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)] w-fit">
+              <Image src="/fav-icon.png" alt="GDG Logo" width={24} height={24} className="brightness-0 invert" />
+              <span className="font-bold text-sm tracking-widest uppercase text-white">// powered by</span>
+            </div>
+            <h2 className="text-6xl md:text-8xl font-anton text-white uppercase leading-[0.9] tracking-tighter">
+              Built With <br /> Support From
+            </h2>
+          </div>
+          <div className="max-w-sm">
+            <p className="text-white/80 font-bold text-xl mb-4 leading-tight">
+              Want your brand in front of the next generation of builders?
+            </p>
+            <Link href="/sponsor" className="text-white font-anton text-2xl hover:underline underline-offset-8 decoration-4">
+              → Become a Sponsor
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="aspect-[2/1] bg-white rounded-3xl border-4 border-black flex items-center justify-center p-8 group hover:-translate-y-1 hover:translate-x-1 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer">
+              <div className="text-gray-300 font-anton text-3xl group-hover:text-black/80 transition-colors uppercase">Partner {i}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Sponsors;
