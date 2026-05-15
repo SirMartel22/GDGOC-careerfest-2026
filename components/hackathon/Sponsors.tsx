@@ -3,24 +3,24 @@ import Link from "next/link"
 
 const Sponsors = () => {
   return (
-    <section className="py-32 bg-[#34A853]">
+    <section className="py-16 bg-[#34A853]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="space-y-6">
-            <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border-2 border-white/40 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)] w-fit">
-              <Image src="/fav-icon.png" alt="GDG Logo" width={24} height={24} className="brightness-0 invert" />
-              <span className="font-bold text-sm tracking-widest uppercase text-white">// powered by</span>
+            <div className="flex items-center gap-2 bg-[#FAAB00] px-4 py-2 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-fit">
+              <Image src="/fav-icon.png" alt="GDG Logo" width={24} height={24} />
+              <span className="font-bold text-sm tracking-widest uppercase text-[#1E1E1E]">// powered by</span>
             </div>
             <h2 className="text-6xl md:text-8xl font-anton text-white uppercase leading-[0.9] tracking-tighter">
               Built With <br /> Support From
             </h2>
           </div>
           <div className="max-w-sm">
-            <p className="text-white/80 font-bold text-xl mb-4 leading-tight">
+            <p className="text-white font-bold text-xl mb-4 leading-tight">
               Want your brand in front of the next generation of builders?
             </p>
-            <Link href="/sponsor" className="text-white font-anton text-2xl hover:underline underline-offset-8 decoration-4">
-              → Become a Sponsor
+            <Link href="/sponsor" className="text-[#FAAB00] font-anton text-2xl hover:underline underline-offset-8 decoration-4">
+              Become a Sponsor
             </Link>
           </div>
         </div>
