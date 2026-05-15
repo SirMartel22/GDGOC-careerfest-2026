@@ -18,18 +18,15 @@ const Footer = () => {
                     />
                 </div>
 
-                {/* Irregular Design Placeholder */}
-                <div className="w-full max-w-md flex justify-center py-4">
-                    <div className="relative w-full h-12 flex items-center justify-center">
-                        {/* Using a placeholder for the irregular design provided later */}
-                        <div className="text-gray-500 font-mono text-sm tracking-widest flex items-center gap-4">
-                            <span>*</span>
-                            <span className="w-16 h-[1px] bg-gray-700"></span>
-                            <span className="text-xl">🌐</span>
-                            <span className="w-16 h-[1px] bg-gray-700"></span>
-                            <span>*</span>
-                        </div>
-                    </div>
+                {/* Solid Shape Design */}
+                <div className="w-full flex justify-center py-4">
+                    <Image 
+                        src="/solid-shape.png"
+                        alt="Design Shape"
+                        width={200}
+                        height={40}
+                        className="h-auto w-auto opacity-80"
+                    />
                 </div>
 
                 {/* Social Icons */}
