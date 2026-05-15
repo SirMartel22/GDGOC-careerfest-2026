@@ -9,7 +9,7 @@ const guidelines = [
   {
     num: "02",
     title: "Solve a Real Problem",
-    desc: "Pick an SDG challenge that matters to you. Build something that actually addresses it — not just an idea, a solution."
+    desc: "Pick an SDG challenge that matters to you. Build something that actually addresses it not just an idea, a solution."
   },
   {
     num: "03",
@@ -30,13 +30,20 @@ const guidelines = [
 
 const Rules = () => {
   return (
-    <section id="rules" className="py-32 bg-[#E1F5FE] border-y-4 border-black">
+    <section id="rules" className="py-16 bg-[#E1F5FE] border-y-4 border-black">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-3 mb-16">
-          <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div className="flex justify-between items-center mb-12">
+          <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             <Image src="/fav-icon.png" alt="GDG Logo" width={24} height={24} />
             <span className="font-bold text-sm tracking-widest uppercase text-[#1E1E1E]">// rules</span>
           </div>
+          <Image 
+            src="/solid-shape.png"
+            alt="Design Shape"
+            width={400}
+            height={30}
+            className="h-auto opacity-80 hidden md:block"
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">

@@ -59,7 +59,7 @@ const SocialIcon = ({ href, icon }: { href: string; icon: string }) => {
     return (
         <Link
             href={href}
-            className="bg-white text-black p-5 rounded-full hover:bg-[#34A853] hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg hover:scale-110"
+            className="bg-white text-black p-5 rounded-2xl hover:bg-[#34A853] hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg hover:scale-110"
             aria-label={icon}
         >
             {icons[icon]}
