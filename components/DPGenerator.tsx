@@ -125,12 +125,12 @@ const DPGenerator = () => {
 
     // Draw Name Text
     let fontSize = 32;
-    ctx.font = `bold ${fontSize}px sans-serif`;
+    ctx.font = `bold ${fontSize}px Anton, sans-serif`;
     
     // Auto-scale font size if name is too long
     while (ctx.measureText(name).width > pillW - 20 && fontSize > 16) {
       fontSize -= 2;
-      ctx.font = `bold ${fontSize}px sans-serif`;
+      ctx.font = `bold ${fontSize}px Anton, sans-serif`;
     }
 
     ctx.fillStyle = "#000000";
@@ -144,107 +144,127 @@ const DPGenerator = () => {
   const downloadDP = () => {
     if (!previewUrl) return;
     const link = document.createElement("a");
-    link.download = `${name || "build-with-ai"}-dp.png`;
+    link.download = `${name || "careerfest-2026"}-dp.png`;
     link.href = previewUrl;
     link.click();
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] pt-32 pb-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-[#1F2937] flex items-center justify-center gap-3">
-            Show demmm! <span className="text-4xl">🥳</span>
-          </h1>
-          <p className="text-lg text-gray-500 mt-6 font-medium">
-            Generate and share your unique BuildWithAI Ilorin 2025 DP
-          </p>
+    <div className="min-h-screen bg-[#F5F5F5] pt-32 pb-20 px-4">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col items-center text-center mb-20 space-y-6">
+            <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-fit">
+                <span className="font-bold text-sm tracking-widest uppercase text-[#1E1E1E]">CareerFest '26</span>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter">
+                Represent <br /> the Movement.
+            </h1>
+            <div className="max-w-2xl space-y-4">
+                <p className="text-xl md:text-2xl font-bold text-[#1E1E1E] leading-tight">
+                    Generate your official CareerFest 2026 DP and show the world you're career-ready.
+                </p>
+                <p className="text-gray-500 font-medium">
+                    Upload your photo, grab your frame, and share it everywhere. Let people know you're part of something real.
+                </p>
+            </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Form Side */}
-          <div className="space-y-8 bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
-            <div>
-              <label className="block text-gray-700 font-semibold mb-3 text-lg">Name</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter name or nickname"
-                className="w-full px-6 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#34A853]/20 focus:border-[#34A853] transition-all text-lg placeholder:text-gray-300"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-semibold mb-3 text-lg">Photo</label>
-              <div className="relative group">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                />
-                <div className="border-2 border-dashed border-gray-200 rounded-3xl p-12 text-center group-hover:border-[#34A853] transition-colors flex flex-col items-center justify-center gap-4">
-                  <div className="bg-gray-50 p-4 rounded-2xl text-gray-400 group-hover:text-[#34A853] transition-colors">
-                    <Upload size={32} />
-                  </div>
-                  <p className="text-gray-500 text-lg">
-                    Drag and drop to upload or <span className="text-[#34A853] font-semibold">browse</span>
-                  </p>
-                </div>
+          <div className="space-y-12 bg-white p-8 md:p-12 rounded-[3rem] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            
+            {/* Step 1: Upload */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                 <div className="w-12 h-12 rounded-full bg-[#EA4336] border-2 border-black flex items-center justify-center text-white font-anton text-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">1</div>
+                 <h3 className="text-3xl font-anton uppercase text-[#1E1E1E]">Upload Your Photo</h3>
               </div>
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-semibold mb-4 text-lg">Select preferred color</label>
-              <div className="flex items-center gap-3">
-                <div className="relative w-6 h-6">
+              <p className="text-gray-500 font-bold ml-16">Drop a clear headshot for best results. Square images work great.</p>
+              
+              <div className="ml-16">
                   <input
-                    type="radio"
-                    checked
-                    readOnly
-                    className="appearance-none w-6 h-6 rounded-full border-2 border-[#4285F4] checked:bg-[#4285F4] cursor-pointer"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your Name (Optional)"
+                    className="w-full px-6 py-4 rounded-xl border-4 border-black focus:outline-none focus:bg-gray-50 transition-all text-lg font-bold placeholder:text-gray-300 mb-6"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-white">
-                    <Check size={14} />
+
+                  <div className="relative group">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                    />
+                    <div className="border-4 border-dashed border-black rounded-3xl p-10 text-center group-hover:bg-gray-50 transition-all flex flex-col items-center justify-center gap-4">
+                      <div className="bg-gray-100 p-4 rounded-2xl text-black border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <Upload size={32} />
+                      </div>
+                      <p className="text-black font-bold text-lg">
+                        Drag and drop or <span className="text-[#4285F4] underline decoration-2">browse</span>
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <span className="text-gray-700 font-medium">White</span>
               </div>
             </div>
 
-            {previewUrl && (
-              <button
-                onClick={downloadDP}
-                className="w-full bg-[#34A853] text-white py-5 rounded-2xl font-bold text-xl hover:bg-[#2d9147] transition-colors shadow-lg shadow-green-200"
-              >
-                Download DP
-              </button>
-            )}
+            {/* Step 2: Pick Frame */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                 <div className="w-12 h-12 rounded-full bg-[#4285F4] border-2 border-black flex items-center justify-center text-white font-anton text-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">2</div>
+                 <h3 className="text-3xl font-anton uppercase text-[#1E1E1E]">Pick Your Frame</h3>
+              </div>
+              
+              <div className="ml-16 grid grid-cols-1 gap-4">
+                 {["Innovation Challenge Participant", "CareerFest Attendee", "Speaker / Mentor"].map((frame, i) => (
+                   <label key={i} className="flex items-center gap-4 p-4 border-2 border-black rounded-2xl cursor-pointer hover:bg-gray-50 transition-all">
+                      <input type="radio" name="frame" defaultChecked={i === 1} className="w-6 h-6 accent-[#34A853]" />
+                      <span className="font-bold text-[#1E1E1E]">{frame}</span>
+                   </label>
+                 ))}
+              </div>
+            </div>
+
+            {/* Step 3: Download */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                 <div className="w-12 h-12 rounded-full bg-[#34A853] border-2 border-black flex items-center justify-center text-white font-anton text-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">3</div>
+                 <h3 className="text-3xl font-anton uppercase text-[#1E1E1E]">Download & Share</h3>
+              </div>
+              <p className="text-gray-500 font-bold ml-16">Save your DP and post with <span className="text-[#34A853]">#CareerFest2026</span></p>
+
+              <div className="ml-16 space-y-6">
+                  {previewUrl && (
+                    <button
+                      onClick={downloadDP}
+                      className="w-full bg-[#EA4336] text-white py-6 rounded-2xl font-anton text-2xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase"
+                    >
+                      Download My DP →
+                    </button>
+                  )}
+                  <p className="text-center font-bold text-gray-500 italic">
+                    Tag us when you post! @[handle] · #CareerFest2026
+                  </p>
+              </div>
+            </div>
           </div>
 
           {/* Preview Side */}
           <div className="flex justify-center lg:sticky lg:top-32">
-            <div className="relative w-full max-w-[500px] aspect-square bg-white p-4 rounded-[2.5rem] shadow-xl shadow-gray-200/50">
+            <div className="relative w-full max-w-[500px] aspect-square bg-white p-6 rounded-[3rem] border-4 border-black shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]">
               <canvas ref={canvasRef} className="hidden" />
               {previewUrl ? (
-                <img
-                  src={previewUrl}
-                  alt="DP Preview"
-                  className="w-full h-full object-contain rounded-2xl"
-                />
+                <div className="w-full h-full relative rounded-2xl overflow-hidden border-2 border-black">
+                    <img
+                      src={previewUrl}
+                      alt="DP Preview"
+                      className="w-full h-full object-contain"
+                    />
+                </div>
               ) : (
-                <div className="relative w-full h-full">
-                  <Image
-                    src="/download-dp.png"
-                    alt="DP Template"
-                    width={1000}
-                    height={1000}
-                    className="w-full h-full object-contain rounded-2xl opacity-50"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <p className="text-gray-400 font-medium text-lg">Fill form to see preview</p>
-                  </div>
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-black bg-gray-50 flex items-center justify-center">
+                  <p className="text-gray-400 font-anton text-2xl uppercase opacity-50">Preview</p>
                 </div>
               )}
             </div>
