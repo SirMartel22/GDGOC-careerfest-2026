@@ -12,7 +12,7 @@ const BENEFITS = [
 
 const INTEREST_TAGS = [
 
-   { text: "Developers", color: "#F5F5F5", textColor: "#1E1E1E", rotate: -5, x: "6%", y: "8%" },
+  { text: "Developers", color: "#F5F5F5", textColor: "#1E1E1E", rotate: -5, x: "6%", y: "8%" },
   { text: "AI Enthusiasts", color: "#C3E6CB", textColor: "#1E1E1E", rotate: 8, x: "24%", y: "15%" },
   { text: "Brand Designers", color: "#F8D7DA", textColor: "#1E1E1E", rotate: -12, x: "8%", y: "42%" },
   { text: "Vibe coding", color: "#E83E8C", textColor: "#FFFFFF", rotate: 14, x: "68%", y: "10%" },
@@ -37,7 +37,7 @@ export default function WhatToExpect() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:32px_32px]" />
 
       <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        
+
         {/* Left Column*/}
         <div>
           <span className="text-sm font-outfit uppercase tracking-widest text-[#FAAB00] font-bold block mb-2">

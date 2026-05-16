@@ -37,7 +37,7 @@ const Hero = () => {
 
             {/* GDG Banner */}
             <div className="flex items-center gap-3 bg-white px-8 py-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <Image src="/fav-icon.png" alt="GDG Logo" width={32} height={32} />
+              <Image src="/fav-icon.png" alt="GDG Logo" width={32} height={32} className="h-auto w-auto" />
               <span className="font-bold text-lg md:text-2xl tracking-tight text-[#1E1E1E] uppercase">GDG on Campus University of Ilorin</span>
             </div>
 
