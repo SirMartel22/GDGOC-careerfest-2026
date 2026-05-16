@@ -1,7 +1,9 @@
-export default function Home() {
+import SubmitSection from '@/components/challenge/SubmitSection'
+
+export default async function Page() {
   return (
-    <main>
-      <h1>CareerFest 2026 — Coming Soon</h1>
-    </main>
+    <>
+      <SubmitSection />
+    </>
   )
 }
