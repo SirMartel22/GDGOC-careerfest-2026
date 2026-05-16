@@ -1,39 +1,44 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link"
+import { useState } from "react";
 import { HiOutlineClock } from "react-icons/hi2";
+import Modal from "../ui/Modal";
 
 const days = [
   {
     day: "May 20",
-    type: "Workshop",
-    title: "Pre-Challenge Workshop Google AI & Cloud Tools",
-    color: "#EA4336",
-    bgColor: "#FFEBEE"
-  },
-  {
-    day: "May 20",
-    type: "Live",
-    title: "Challenge Opens Start Building",
+    type: "Workshop & Kickoff",
+    title: "Pre-Challenge Workshop & Challenge Opens",
     color: "#4285F4",
-    bgColor: "#E3F2FD"
+    bgColor: "#E3F2FD",
+    actionType: "link",
+    link: "https://bit.ly/Pre-CareerFest26"
   },
   {
     day: "May 25",
     type: "Deadline",
-    title: "Submission Deadline Projects Due",
+    title: "Submission Deadline — Projects Due",
     color: "#34A853",
-    bgColor: "#E8F5E9"
+    bgColor: "#E8F5E9",
+    actionType: "modal",
+    modalType: "submission"
   },
   {
     day: "June 15",
     type: "Finale",
     title: "Winners Announced at Main CareerFest Day",
     color: "#FAAB00",
-    bgColor: "#FFF8E1"
+    bgColor: "#FFF8E1",
+    actionType: "modal",
+    modalType: "finale"
   }
 ];
 
 const Schedule = () => {
+  const [showSubmissionModal, setShowSubmissionModal] = useState(false);
+  const [showFinaleModal, setShowFinaleModal] = useState(false);
+
   return (
     <section id="schedule" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -65,24 +70,27 @@ const Schedule = () => {
             <p className="text-[#1E1E1E] font-medium mb-6">
               Not sure where to start? Join the workshop before the challenge kicks off. Learn how to use Google AI and Cloud tools to build your solution from scratch.
             </p>
-            <Link href="/workshop" className="flex items-center gap-2 font-bold text-[#4285F4] hover:underline underline-offset-4 decoration-2">
+            <Link href="https://bit.ly/Pre-CareerFest26" target="_blank" className="flex items-center gap-2 font-bold text-[#4285F4] hover:underline underline-offset-4 decoration-2">
               Register for Workshop
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {days.map((item, index) => (
-            <div key={index} className="flex flex-col border-4 border-black rounded-[3rem] overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all group h-full">
-              <div className="p-10 space-y-8 flex-grow" style={{ backgroundColor: item.bgColor }}>
-                <div className="flex justify-between items-start">
-                  <span className="text-5xl font-anton uppercase text-[#1E1E1E] leading-none">{item.day}</span>
-                  <span className="px-6 py-2 rounded-2xl text-white text-sm font-bold uppercase border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" style={{ backgroundColor: item.color }}>
-                    {item.type}
-                  </span>
+            <div key={index} className="flex flex-col border-4 border-black rounded-[3rem] overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all group min-h-[380px]">
+              <div className="p-8 space-y-6 flex-grow flex flex-col justify-between" style={{ backgroundColor: item.bgColor }}>
+                <div className="space-y-6">
+                    <div className="flex justify-between items-start">
+                    <span className="text-5xl font-anton uppercase text-[#1E1E1E] leading-none">{item.day}</span>
+                    <span className="px-6 py-2 rounded-2xl text-white text-sm font-bold uppercase border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" style={{ backgroundColor: item.color }}>
+                        {item.type}
+                    </span>
+                    </div>
+                    <h3 className="text-3xl font-bold text-[#1E1E1E] leading-tight">{item.title}</h3>
                 </div>
-                <h3 className="text-3xl font-bold text-[#1E1E1E] leading-tight">{item.title}</h3>
-                <div className="pt-6 flex flex-col gap-3">
+                
+                <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-2 text-gray-600 font-bold">
                     <HiOutlineClock className="text-xl" />
                     <span>10:00 AM</span>
@@ -93,15 +101,47 @@ const Schedule = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-8 bg-white border-t-4 border-black">
-                <button className="w-full py-4 rounded-2xl text-white font-anton text-xl transition-all border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 uppercase" style={{ backgroundColor: item.color }}>
-                  {item.type === "Virtual" ? "Set Reminder" : "Get Ticket"}
-                </button>
+              <div className="p-6 bg-white border-t-4 border-black">
+                {item.actionType === "link" ? (
+                    <Link 
+                        href={item.link || "#"} 
+                        target="_blank"
+                        className="block w-full py-4 text-center rounded-2xl text-white font-anton text-xl transition-all border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 uppercase" 
+                        style={{ backgroundColor: item.color }}
+                    >
+                        Register
+                    </Link>
+                ) : (
+                    <button 
+                        onClick={() => {
+                            if (item.modalType === "submission") setShowSubmissionModal(true);
+                            if (item.modalType === "finale") setShowFinaleModal(true);
+                        }}
+                        className="w-full py-4 rounded-2xl text-white font-anton text-xl transition-all border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 uppercase" 
+                        style={{ backgroundColor: item.color }}
+                    >
+                        {item.modalType === "submission" ? "Submit Project" : "Register"}
+                    </button>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <Modal 
+        isOpen={showSubmissionModal} 
+        onClose={() => setShowSubmissionModal(false)} 
+        title="Coming Soon!" 
+        message="The submission portal isn't open yet. Keep building and check back during the challenge window!" 
+      />
+
+      <Modal 
+        isOpen={showFinaleModal} 
+        onClose={() => setShowFinaleModal(false)} 
+        title="Coming Soon!" 
+        message="Registration for the Main Career Fest is coming soon. Stay tuned for official announcements!" 
+      />
     </section>
   );
 };
