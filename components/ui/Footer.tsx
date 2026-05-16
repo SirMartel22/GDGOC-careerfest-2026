@@ -31,8 +31,8 @@ const Footer = () => {
 
                 {/* Social Icons */}
                 <div className="flex gap-6 md:gap-8">
-                    <SocialIcon href="#" icon="twitter" />
-                    <SocialIcon href="#" icon="instagram" />
+                    <SocialIcon href="https://x.com/gdgoc_unilorin" icon="twitter" />
+                    <SocialIcon href="https://www.instagram.com/gdgoc_unilorin/" icon="instagram" />
                     <SocialIcon href="#" icon="facebook" />
                     <SocialIcon href="#" icon="linkedin" />
                 </div>

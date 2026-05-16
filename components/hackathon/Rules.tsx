@@ -42,7 +42,7 @@ const Rules = () => {
             alt="Design Shape"
             width={400}
             height={30}
-            className="h-auto opacity-80 hidden md:block"
+            className="h-auto opacity-80 w-32 md:w-[400px]"
           />
         </div>
 
