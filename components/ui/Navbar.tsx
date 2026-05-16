@@ -16,7 +16,7 @@ const Navbar = () => {
     { name: "About", href: "#about" },
     { name: "Register", href: "#register" },
     { name: "Generate DP", href: "/get-dp" },
-    { name: "Direction", href: "#direction", isAction: true },
+    { name: "Venue", href: "#schedule" },
   ];
 
   return (
