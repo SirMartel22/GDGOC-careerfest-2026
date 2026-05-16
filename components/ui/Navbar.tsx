@@ -40,29 +40,16 @@ const Navbar = () => {
           {/* Desktop Navigation - Middle (Centered) */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
-              link.isAction ? (
-                <button 
-                  key={link.name}
-                  onClick={() => setShowDirection(true)}
-                  className="text-white hover:text-[#FAAB00] font-anton uppercase text-lg transition-colors tracking-wider cursor-pointer"
-                  style={{ 
-                    textShadow: "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000" 
-                  }}
-                >
-                  {link.name}
-                </button>
-              ) : (
-                <Link 
-                  key={link.name}
-                  href={link.href} 
-                  className="text-white hover:text-[#FAAB00] font-anton uppercase text-lg transition-colors tracking-wider"
-                  style={{ 
-                    textShadow: "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000" 
-                  }}
-                >
-                  {link.name}
-                </Link>
-              )
+              <Link 
+                key={link.name}
+                href={link.href} 
+                className="text-white hover:text-[#FAAB00] font-anton uppercase text-lg transition-colors tracking-wider"
+                style={{ 
+                  textShadow: "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000" 
+                }}
+              >
+                {link.name}
+              </Link>
             ))}
           </div>
 
@@ -90,27 +77,14 @@ const Navbar = () => {
         <div className={`md:hidden absolute top-0 left-0 right-0 bg-[#34A853] border-b border-[#2d9147] transition-all duration-300 overflow-hidden ${isOpen ? 'h-screen opacity-100 pt-20' : 'h-0 opacity-0'}`}>
           <div className="flex flex-col p-8 gap-8 items-center justify-center h-full">
             {navLinks.map((link) => (
-              link.isAction ? (
-                <button 
-                  key={link.name}
-                  onClick={() => {
-                    setIsOpen(false);
-                    setShowDirection(true);
-                  }}
-                  className="text-white font-anton uppercase text-3xl tracking-widest hover:text-[#FAAB00] transition-colors cursor-pointer"
-                >
-                  {link.name}
-                </button>
-              ) : (
-                <Link 
-                  key={link.name}
-                  href={link.href} 
-                  className="text-white font-anton uppercase text-3xl tracking-widest hover:text-[#FAAB00] transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              )
+              <Link 
+                key={link.name}
+                href={link.href} 
+                className="text-white font-anton uppercase text-3xl tracking-widest hover:text-[#FAAB00] transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
             ))}
             <button 
               onClick={() => {
