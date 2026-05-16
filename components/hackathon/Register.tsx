@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Register = () => {
   return (
@@ -28,20 +29,24 @@ const Register = () => {
           </h2>
           
           <p className="text-white text-xl md:text-2xl font-bold leading-tight max-w-2xl mx-auto">
-            Registration for the Pre Career Fest Challenge is opening soon. Secure your spot and get ready to solve real-world problems with Google technology.
+            Registration for the Pre Career Fest Challenge is now open. Secure your spot and get ready to solve real-world problems with Google technology.
           </p>
 
           <div className="pt-12">
-            <div className="bg-white p-10 md:p-16 rounded-[3rem] border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] inline-block w-full max-w-2xl">
+            <div className="bg-white p-8 md:p-12 rounded-[3rem] border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] inline-block w-full max-w-xl">
               <div className="space-y-6">
-                <div className="text-4xl md:text-5xl font-anton text-[#34A853] uppercase">Opening Soon</div>
+                <div className="text-4xl md:text-5xl font-anton text-[#34A853] uppercase">Join the Challenge</div>
                 <p className="text-gray-500 font-bold text-lg">
-                  We're finalizing the registration portal. Follow us for the official announcement!
+                  Click the button below to register and start your innovation journey.
                 </p>
                 <div className="pt-6">
-                    <button className="w-full bg-[#EA4336] text-white py-6 rounded-2xl font-anton text-2xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] opacity-50 cursor-not-allowed uppercase">
-                        Registration Closed
-                    </button>
+                    <Link 
+                        href="https://bit.ly/Pre-CareerFest26" 
+                        target="_blank"
+                        className="inline-block w-full max-w-xs bg-[#EA4336] text-white py-5 rounded-2xl font-anton text-2xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase"
+                    >
+                        Register
+                    </Link>
                 </div>
               </div>
             </div>
