@@ -10,8 +10,6 @@
 
 @layer base {
   :root {
-    --font-anton: var(--font-anton);
-    --font-outfit: var(--font-outfit);
     --google-green: #34A853;
     --google-yellow: #FAAB00;
     --google-blue: #4285F4;
@@ -37,5 +35,16 @@
     font-family: var(--font-anton), sans-serif !important;
     font-weight: 400 !important;
     color: var(--google-black);
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: fit-content;
+    animation: marquee 20s linear infinite;
   }
 }
