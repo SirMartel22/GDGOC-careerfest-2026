@@ -4,6 +4,7 @@ import Image from "next/image";
 import { HiArrowRight, HiOutlineRocketLaunch } from "react-icons/hi2";
 import { useState } from "react";
 import Modal from "../ui/Modal";
+import SubmitForm from "../submit/SubmitForm";
 
 const Hero = () => {
   const [showModal, setShowModal] = useState(false);
@@ -78,9 +79,18 @@ const Hero = () => {
       <Modal 
         isOpen={showModal} 
         onClose={() => setShowModal(false)} 
-        title="Coming Soon!" 
-        message="The submission portal isn't open yet. Keep building and check back during the challenge window!" 
-      />
+        maxWidth="max-w-2xl"
+      >
+        <div className="space-y-8">
+          <div className="text-center space-y-2">
+            <h2 className="text-4xl md:text-5xl font-anton uppercase leading-none tracking-tight">
+              Submit Your Project
+            </h2>
+            <p className="text-gray-500 font-bold italic">Show us what you've built during the challenge!</p>
+          </div>
+          <SubmitForm className="space-y-6" />
+        </div>
+      </Modal>
     </>
   );
 };
