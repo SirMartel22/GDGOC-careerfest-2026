@@ -7,7 +7,7 @@ const About = () => {
         {/* Header Alignment */}
         <div className="flex justify-between items-center mb-12">
            <div className="flex items-center gap-3 bg-white/20 px-4 py-2 rounded-2xl border-2 border-black w-fit">
-              <Image src="/fav-icon.png" alt="GDG Logo" width={24} height={24} />
+              <Image src="/fav-icon.png" alt="GDG Logo" width={24} height={24} className="h-auto w-auto" />
               <span className="font-bold text-sm tracking-widest uppercase text-[#1E1E1E]">// about the challenge</span>
            </div>
            <Image 
@@ -15,7 +15,7 @@ const About = () => {
               alt="Design Shape"
               width={400}
               height={30}
-              className="h-auto opacity-80 w-32 md:w-[400px]"
+              className="h-auto opacity-80 hidden md:block w-auto"
            />
         </div>
 
