@@ -136,7 +136,7 @@ const DPGenerator = () => {
 
   return (
     <div className="min-h-screen bg-[#F5F5F5] pt-20 pb-16 px-4">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-0 sm:px-6">
         <div className="flex flex-col items-center text-center mb-16 space-y-6">
           <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-fit">
             <span className="font-bold text-sm tracking-widest uppercase text-[#1E1E1E]">CareerFest '26</span>
@@ -207,12 +207,14 @@ const DPGenerator = () => {
           </div>
           {/* Download Button Outside the Card */}
           {previewUrl && (
-            <button
-              onClick={downloadDP}
-              className="w-full flex items-center justify-center gap-3 bg-[#EA4336] text-white py-6 rounded-2xl font-anton text-2xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase mt-auto"
-            >
-              Download My DP
-            </button>
+            <div className="col-span-1 lg:col-span-2 flex justify-center mt-4">
+              <button
+                onClick={downloadDP}
+                className="w-full max-w-xs md:max-w-sm flex items-center justify-center gap-3 bg-[#EA4336] text-white py-4 rounded-2xl font-anton text-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase"
+              >
+                Download My DP
+              </button>
+            </div>
           )}
         </div>
       </div>

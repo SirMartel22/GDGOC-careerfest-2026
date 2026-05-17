@@ -5,13 +5,13 @@ import { useState } from "react";
 import { HiOutlineClock, HiMapPin } from "react-icons/hi2";
 import Modal from "../ui/Modal";
 import DirectionModal from "../ui/DirectionModal";
-import SubmitForm from "../submit/SubmitForm";
 
 const days = [
   {
     day: "May 20",
     type: "Workshop & Kickoff",
     title: "Pre-Challenge Workshop & Challenge Opens",
+    time: "1:00 PM",
     color: "#4285F4",
     bgColor: "#E3F2FD",
     actionType: "link",
@@ -31,6 +31,7 @@ const days = [
     day: "June 15",
     type: "Finale",
     title: "Winners Announced at Main CareerFest Day",
+    time: "10:00 AM",
     color: "#FAAB00",
     bgColor: "#FFF8E1",
     actionType: "modal",
@@ -103,7 +104,7 @@ const Schedule = () => {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-2 text-gray-600 font-bold">
                     <HiOutlineClock className="text-xl" />
-                    <span>{item.day === "May 25" ? "11:59 PM" : "10:00 AM"}</span>
+                    <span>{item.time || "10:00 AM"}</span>
                   </div>
                   {item.day !== "May 25" && (
                     <div className="flex items-center gap-2 text-gray-600 font-bold">
@@ -147,21 +148,6 @@ const Schedule = () => {
         title="Coming Soon!"
         message="The submission portal isn't open yet. Keep building and check back during the challenge window!"
       />
-      <Modal 
-        isOpen={showSubmissionModal} 
-        onClose={() => setShowSubmissionModal(false)} 
-        maxWidth="max-w-2xl"
-      >
-        <div className="space-y-8">
-          <div className="text-center space-y-2">
-            <h2 className="text-4xl md:text-5xl font-anton uppercase leading-none tracking-tight">
-              Submit Your Project
-            </h2>
-            <p className="text-gray-500 font-bold italic">Show us what you've built during the challenge!</p>
-          </div>
-          <SubmitForm className="space-y-6" />
-        </div>
-      </Modal>
 
       <Modal
         isOpen={showFinaleModal}

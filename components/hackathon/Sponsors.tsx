@@ -43,8 +43,14 @@ const Sponsors = () => {
         <div className="overflow-hidden">
           <div className="animate-marquee flex gap-12 py-4">
             {[1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
-              <div key={index} className="flex-shrink-0 w-64 aspect-[2/1] bg-white rounded-3xl border-4 border-black flex items-center justify-center p-8 group hover:-translate-y-1 hover:translate-x-1 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer">
-                <div className="text-gray-300 font-anton text-3xl group-hover:text-black/80 transition-colors uppercase">Partner {i}</div>
+              <div key={index} className="flex-shrink-0 w-64 aspect-[2/1] bg-white rounded-3xl border-4 border-black flex items-center justify-center p-3 group hover:-translate-y-1 hover:translate-x-1 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer">
+                <Image 
+                  src="/verafy-me-signature-black.png"
+                  alt={`Partner ${i}`}
+                  width={200}
+                  height={80}
+                  className="w-full h-full object-contain"
+                />
               </div>
             ))}
           </div>
