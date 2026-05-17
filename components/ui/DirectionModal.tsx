@@ -25,6 +25,7 @@ const DirectionModal = ({ isOpen, onClose }: DirectionModalProps) => {
       <div 
         className="bg-white border-4 border-black rounded-[2.5rem] p-8 md:p-12 max-w-lg w-full shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative"
         onClick={(e) => e.stopPropagation()}
+        data-lenis-prevent
       >
         <button 
           onClick={onClose}
