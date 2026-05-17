@@ -42,7 +42,7 @@ const Rules = () => {
             alt="Design Shape"
             width={400}
             height={30}
-            className="h-auto opacity-80 w-32 md:w-[400px]"
+            className="h-auto opacity-80 hidden md:block w-auto"
           />
         </div>
 
@@ -51,8 +51,14 @@ const Rules = () => {
             <h2 className="text-6xl md:text-8xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter mb-10">
               How to <br /> Build Right.
             </h2>
-            <div className="relative aspect-video bg-white rounded-[3rem] overflow-hidden border-4 border-black shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] group mt-12">
-              <Image src="/Nano-3.png" alt="Rule Design" fill className="object-contain p-12 opacity-90 group-hover:scale-110 transition-transform duration-700" />
+            <div className="relative aspect-video group mt-12">
+              <Image 
+                src="/Nano-3.png" 
+                alt="Rule Design" 
+                fill 
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain opacity-90 group-hover:scale-110 transition-transform duration-700" 
+              />
             </div>
           </div>
 
