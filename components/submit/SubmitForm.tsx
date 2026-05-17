@@ -7,7 +7,11 @@ import { uploadToCloudinary } from '@/lib/cloudinary/upload';
 import { supabase } from '@/lib/supabase/client';
 import { ProjectSubmission } from '@/types';
 
-export default function SubmitForm() {
+interface SubmitFormProps {
+  className?: string;
+}
+
+export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100" }: SubmitFormProps) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -91,7 +95,7 @@ export default function SubmitForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+    <form onSubmit={handleSubmit} className={className}>
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
