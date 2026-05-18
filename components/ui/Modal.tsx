@@ -29,7 +29,7 @@ const Modal = ({ isOpen, onClose, title = "", message = "", children, maxWidth =
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity" onClick={onClose}>
       <div 
-        className={`bg-white border-4 border-black rounded-[2.5rem] p-8 md:p-12 ${maxWidth} w-full shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative transform transition-all animate-in zoom-in-95 duration-300 max-h-[95vh] overflow-y-auto`}
+        className={`bg-white border-4 border-black rounded-[2.5rem] p-8 md:p-12 ${maxWidth} w-full shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative transform transition-all animate-in zoom-in-95 duration-300 max-h-[80vh] overflow-y-auto`}
         onClick={(e) => e.stopPropagation()}
         data-lenis-prevent
       >
