@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Footer from "@/components/ui/Footer";
 import Navbar from "@/components/ui/Navbar";
+import { Analytics } from '@vercel/analytics/next';
 
 const anton = Anton({
   weight: "400",
@@ -43,9 +44,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </SmoothScrollProvider>
-
-
-
+        <Analytics />
       </body>
     </html>
   );
