@@ -146,7 +146,7 @@ const Schedule = () => {
         isOpen={showSubmissionModal}
         onClose={() => setShowSubmissionModal(false)}
         title="Coming Soon!"
-        message="The submission portal isn't open yet. Keep building and check back during the challenge window!"
+        message="The submission portal isn't open yet. Check back during the challenge window!"
       />
 
       <Modal
