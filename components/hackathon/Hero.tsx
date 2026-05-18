@@ -4,14 +4,13 @@ import Image from "next/image";
 import { HiArrowRight, HiOutlineRocketLaunch } from "react-icons/hi2";
 import { useState } from "react";
 import Modal from "../ui/Modal";
-import SubmitForm from "../submit/SubmitForm";
 
 const Hero = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <section className="relative pt-24 pb-16 overflow-hidden bg-white">
+      <section className="relative pt-12 pb-16 overflow-hidden bg-white">
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
           {/* Top Badges Row */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -79,18 +78,9 @@ const Hero = () => {
       <Modal 
         isOpen={showModal} 
         onClose={() => setShowModal(false)} 
-        maxWidth="max-w-2xl"
-      >
-        <div className="space-y-8">
-          <div className="text-center space-y-2">
-            <h2 className="text-4xl md:text-5xl font-anton uppercase leading-none tracking-tight">
-              Submit Your Project
-            </h2>
-            <p className="text-gray-500 font-bold italic">Show us what you've built during the challenge!</p>
-          </div>
-          <SubmitForm className="space-y-6" />
-        </div>
-      </Modal>
+        title="Coming Soon!"
+        message="The submission portal isn't open yet. Check back during the challenge window!"
+      />
     </>
   );
 };
