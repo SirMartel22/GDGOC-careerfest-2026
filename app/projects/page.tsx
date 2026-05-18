@@ -1,65 +1,98 @@
+"use client";
+
+import React, { useEffect, useState, useRef } from 'react';
+import { getProjects, searchProjects } from '@/lib/supabase/queries';
+import { Project } from '@/types';
+import SearchBar from '@/components/projects/SearchBar';
+import ProjectGrid from '@/components/projects/ProjectGrid';
+
 export default function ProjectsPage() {
-  const projects = [
-    {
-      title: "FinTech Dashboard",
-      description: "A high-performance trading interface with real-time analytics.",
-      tags: ["Next.js", "TypeScript", "D3.js"],
-      color: "from-blue-500/20 to-cyan-500/20"
-    },
-    {
-      title: "AI Content Engine",
-      description: "Generative AI platform for automated marketing copy.",
-      tags: ["OpenAI", "Node.js", "React"],
-      color: "from-purple-500/20 to-pink-500/20"
-    },
-    {
-      title: "EcoTrack Mobile",
-      description: "Sustainability tracking app for conscious consumers.",
-      tags: ["React Native", "Firebase", "Leaflet"],
-      color: "from-emerald-500/20 to-teal-500/20"
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [pageSize, setPageSize] = useState(9);
+  const debounceRef = useRef<number | null>(null);
+
+  const loadAll = async () => {
+    setLoading(true);
+    try {
+      const data = await getProjects();
+      setProjects(data || []);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  useEffect(() => {
+    loadAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    // debounce search
+    if (debounceRef.current) window.clearTimeout(debounceRef.current);
+    debounceRef.current = window.setTimeout(async () => {
+      if (!query || query.trim().length < 3) {
+        await loadAll();
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const res = await searchProjects(query.trim());
+        setProjects(res || []);
+      } finally {
+        setLoading(false);
+      }
+    }, 350);
+
+    return () => {
+      if (debounceRef.current) window.clearTimeout(debounceRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-indigo-500/30">
-      <main className="max-w-7xl mx-auto px-6 pt-32 pb-24">
-        <div className="space-y-4 mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Our Projects</h1>
-          <p className="text-zinc-400 text-lg max-w-2xl">
+    <section className="relative pt-24 pb-16 overflow-hidden bg-white">
+      <main className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="flex flex-col items-center text-center mb-12">
+          <div className="relative">
+            <div className="flex items-center gap-4 bg-white border-4 border-black p-6 rounded-4xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+              <h1 className="text-4xl md:text-6xl font-anton uppercase text-[#1E1E1E]">Our Projects</h1>
+            </div>
+          </div>
+
+          <p className="text-zinc-700 text-lg max-w-2xl mt-6">
             Exploring the intersection of design and technology through impactful digital experiences.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, i) => (
-            <div 
-              key={i}
-              className="group relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all overflow-hidden"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
-              
-              <div className="relative z-10 space-y-4">
-                <div className="h-12 w-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <div className="h-6 w-6 rounded-full border-2 border-white/20" />
-                </div>
-                
-                <h3 className="text-xl font-bold">{project.title}</h3>
-                <p className="text-zinc-400 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 pt-4">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full bg-white/5 text-xs font-medium text-zinc-300">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-6">
+          <div className="flex-1 min-w-0">
+            <SearchBar value={query} onChange={setQuery} onClear={() => setQuery('')} count={projects.length} />
+          </div>
+          <div className="text-sm text-zinc-600 whitespace-nowrap">Showing {Math.min(pageSize, projects.length)} of {projects.length}</div>
         </div>
+
+        {loading ? (
+          <div className="text-zinc-600">Loading projects…</div>
+        ) : (
+          <>
+            <ProjectGrid projects={projects.slice(0, pageSize)} />
+
+            {projects.length > pageSize && (
+              <div className="mt-8 flex justify-center">
+                <button
+                  onClick={() => setPageSize((s) => s + 9)}
+                  className="px-8 py-3 bg-white border-2 border-black rounded-2xl font-anton uppercase hover:translate-x-0.5 hover:translate-y-0.5 transition"
+                >
+                  Load more
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </main>
-    </div>
-  )
+    </section>
+  );
 }
