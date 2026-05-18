@@ -45,7 +45,7 @@ const Register = () => {
                         target="_blank"
                         className="inline-block w-full max-w-xs bg-[#EA4336] text-white py-5 rounded-2xl font-anton text-2xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase"
                     >
-                        Register
+                        RSVP
                     </Link>
                 </div>
               </div>

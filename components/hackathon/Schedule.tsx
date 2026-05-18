@@ -122,7 +122,7 @@ const Schedule = () => {
                     className="block w-full py-4 text-center rounded-2xl text-white font-anton text-xl transition-all border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 uppercase"
                     style={{ backgroundColor: item.color }}
                   >
-                    Register
+                    RSVP
                   </Link>
                 ) : (
                   <button
@@ -133,7 +133,7 @@ const Schedule = () => {
                     className="w-full py-4 rounded-2xl text-white font-anton text-xl transition-all border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 uppercase"
                     style={{ backgroundColor: item.color }}
                   >
-                    {item.modalType === "submission" ? "Submit Project" : "Register"}
+                    {item.modalType === "submission" ? "Submit Project" : "RSVP"}
                   </button>
                 )}
               </div>
