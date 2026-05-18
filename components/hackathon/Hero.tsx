@@ -10,7 +10,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative pt-24 pb-16 overflow-hidden bg-white">
+      <section className="relative pt-12 pb-16 overflow-hidden bg-white">
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
           {/* Top Badges Row */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
