@@ -1,6 +1,6 @@
 "use client";
 
-import { HiXMark } from "react-icons/hi2";
+import { HiXMark, HiOutlineRocketLaunch } from "react-icons/hi2";
 import { useEffect, ReactNode } from "react";
 
 interface ModalProps {
@@ -47,7 +47,7 @@ const Modal = ({ isOpen, onClose, title = "", message = "", children, maxWidth =
         ) : (
           <div className="space-y-6 text-center">
             <div className="w-20 h-20 bg-[#FAAB00] border-4 border-black rounded-2xl mx-auto flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <span className="text-4xl">🚀</span>
+              <HiOutlineRocketLaunch className="text-4xl text-black" />
             </div>
             
             <h2 className="text-4xl md:text-5xl font-anton uppercase leading-none tracking-tight">
