@@ -5,6 +5,7 @@ import { getProjects, searchProjects } from '@/lib/supabase/queries';
 import { Project } from '@/types';
 import SearchBar from '@/components/projects/SearchBar';
 import ProjectGrid from '@/components/projects/ProjectGrid';
+import { motion } from 'framer-motion';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -56,23 +57,38 @@ export default function ProjectsPage() {
     <section className="relative pt-24 pb-16 overflow-hidden bg-white">
       <main className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center mb-12">
-          <div className="relative">
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="relative"
+          >
             <div className="flex items-center gap-4 bg-white border-4 border-black p-6 rounded-4xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
               <h1 className="text-4xl md:text-6xl font-anton uppercase text-[#1E1E1E]">Our Projects</h1>
             </div>
-          </div>
+          </motion.div>
 
-          <p className="text-zinc-700 text-lg max-w-2xl mt-6">
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            className="text-zinc-700 text-lg max-w-2xl mt-6"
+          >
             Exploring the intersection of design and technology through impactful digital experiences.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          className="mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-6"
+        >
           <div className="flex-1 min-w-0">
             <SearchBar value={query} onChange={setQuery} onClear={() => setQuery('')} count={projects.length} />
           </div>
           <div className="text-sm text-zinc-600 whitespace-nowrap">Showing {Math.min(pageSize, projects.length)} of {projects.length}</div>
-        </div>
+        </motion.div>
 
         {loading ? (
           <div className="text-zinc-600">Loading projects…</div>

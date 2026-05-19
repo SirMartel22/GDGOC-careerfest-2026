@@ -1,6 +1,9 @@
+"use client";
+
 import React from 'react';
 import { Project } from '@/types';
 import ProjectCard from './ProjectCard';
+import { motion } from 'framer-motion';
 
 type Grouped = Record<string, Project[]>;
 
@@ -23,6 +26,21 @@ function groupProjects(projects: Project[]): Grouped {
 	}, {} as Grouped);
 }
 
+const gridVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.04
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } }
+};
+
 export const ProjectGrid: React.FC<{ projects: Project[] }> = ({ projects }) => {
 	const grouped = groupProjects(projects);
 	const categories = Object.keys(grouped).sort((a, b) => (a === 'Other' ? 1 : a.localeCompare(b)));
@@ -35,11 +53,18 @@ export const ProjectGrid: React.FC<{ projects: Project[] }> = ({ projects }) => 
 						<span className="px-4 py-2 bg-white border-2 border-black rounded-2xl font-anton uppercase text-sm">{cat}</span>
 						<span className="text-zinc-600 text-sm">({grouped[cat].length})</span>
 					</div>
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+					<motion.div 
+						variants={gridVariants}
+						initial="hidden"
+						animate="show"
+						className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+					>
 						{grouped[cat].map((p) => (
-							<ProjectCard key={p.id} project={p} />
+							<motion.div key={p.id} variants={cardVariants}>
+								<ProjectCard project={p} />
+							</motion.div>
 						))}
-					</div>
+					</motion.div>
 				</section>
 			))}
 		</div>

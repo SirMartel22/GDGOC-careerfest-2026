@@ -6,6 +6,7 @@ import { useState } from "react";
 import { HiBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Modal from "./Modal";
 import DirectionModal from "./DirectionModal";
+import SubmitForm from "../submit/SubmitForm";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,9 +104,20 @@ const Navbar = () => {
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        title="Coming Soon!"
-        message="The submission portal isn't open yet. Check back during the challenge window!"
-      />
+        maxWidth="max-w-2xl"
+      >
+        <div className="space-y-6">
+          <div className="text-center space-y-2">
+            <h2 className="text-4xl font-anton uppercase leading-none tracking-tight">
+              Submit Your Project
+            </h2>
+            <p className="text-gray-500 font-bold">
+              Show us what you've built! Provide your details below.
+            </p>
+          </div>
+          <SubmitForm className="space-y-4" />
+        </div>
+      </Modal>
 
       <DirectionModal 
         isOpen={showDirection}
