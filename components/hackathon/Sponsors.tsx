@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link"
 
 const Sponsors = () => {
   return (
@@ -30,12 +29,14 @@ const Sponsors = () => {
                 <p className="text-white font-bold text-xl leading-tight">
                   Want your brand in front of the next generation of builders?
                 </p>
-                <Link 
-                    href="/sponsor" 
-                    className="inline-block bg-[#EA4336] text-white px-8 py-3 rounded-2xl font-anton text-2xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase tracking-wide"
+                <a 
+                    href="https://wa.me/2348145211848?text=Hi%2C%20I%27m%20%5BName%5D%20from%20%5BCompany%20Name%5D%2E%0A%0AI%20hope%20I%27m%20chatting%20the%20Current%20Lead%20of%20Google%20Developer%20Group%20on%20Campus%20University%20of%20Ilorin%2C%20My%20company%20would%20Like%20to%20sponsor%2Fpartner%20GDGOC%20on%20Career%20Fest%2C%20Let%20us%20set%20up%20a%20proper%20meeting%2E%20Hoping%20to%20hear%20from%20you%20soon%2E"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#EA4336] text-white px-8 py-3 rounded-2xl font-anton text-2xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase tracking-wide text-center"
                 >
                   Become a Sponsor
-                </Link>
+                </a>
             </div>
           </div>
         </div>

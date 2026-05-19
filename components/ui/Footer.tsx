@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { FaXTwitter, FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
+import { FaXTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 
 const Footer = () => {
     return (
@@ -33,8 +33,7 @@ const Footer = () => {
                 <div className="flex gap-6 md:gap-8">
                     <SocialIcon href="https://x.com/gdgoc_unilorin" icon="twitter" />
                     <SocialIcon href="https://www.instagram.com/gdgoc_unilorin/" icon="instagram" />
-                    <SocialIcon href="#" icon="facebook" />
-                    <SocialIcon href="#" icon="linkedin" />
+                    <SocialIcon href="https://www.linkedin.com/company/gdg-on-campus-university-of-ilorin" icon="linkedin" />
                 </div>
 
                 {/* Copyright Section */}
@@ -52,7 +51,6 @@ const SocialIcon = ({ href, icon }: { href: string; icon: string }) => {
     const icons: Record<string, React.ReactNode> = {
         twitter: <FaXTwitter size={24} />,
         instagram: <FaInstagram size={24} />,
-        facebook: <FaFacebookF size={24} />,
         linkedin: <FaLinkedinIn size={24} />,
     };
 
