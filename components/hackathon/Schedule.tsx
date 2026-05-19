@@ -5,6 +5,7 @@ import { useState } from "react";
 import { HiOutlineClock, HiMapPin } from "react-icons/hi2";
 import Modal from "../ui/Modal";
 import DirectionModal from "../ui/DirectionModal";
+import SubmitForm from "../submit/SubmitForm";
 
 const days = [
   {
@@ -145,9 +146,20 @@ const Schedule = () => {
       <Modal
         isOpen={showSubmissionModal}
         onClose={() => setShowSubmissionModal(false)}
-        title="Coming Soon!"
-        message="The submission portal isn't open yet. Check back during the challenge window!"
-      />
+        maxWidth="max-w-2xl"
+      >
+        <div className="space-y-6">
+          <div className="text-center space-y-2">
+            <h2 className="text-4xl font-anton uppercase leading-none tracking-tight">
+              Submit Your Project
+            </h2>
+            <p className="text-gray-500 font-bold">
+              Show us what you've built! Provide your details below.
+            </p>
+          </div>
+          <SubmitForm className="space-y-4" />
+        </div>
+      </Modal>
 
       <Modal
         isOpen={showFinaleModal}
