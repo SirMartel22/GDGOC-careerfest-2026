@@ -20,8 +20,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 				className="group relative p-6 rounded-4xl bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 transition-all min-h-72 overflow-hidden cursor-pointer"
 				onClick={() => setOpen(true)}
 			>
-				<div className="flex items-start gap-4 h-full">
-					<div className="h-20 w-20 shrink-0 rounded-lg bg-white/5 overflow-hidden border-2 border-black">
+				<div className="flex h-full flex-col gap-4">
+					<div className="aspect-video w-full overflow-hidden rounded-2xl border-2 border-black bg-white/5">
 						{thumb ? (
 							// eslint-disable-next-line @next/next/no-img-element
 							<img src={thumb} alt={project.project_name} className="h-full w-full object-cover" />
@@ -48,9 +48,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 							)}
 							<span className="text-zinc-500">Submitted {new Date(project.created_at).toLocaleDateString()}</span>
 						</div>
+
+						<div className="mt-5 inline-flex self-start rounded-full border-2 border-black bg-white px-3 py-1 text-xs font-anton uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+							View project
+						</div>
 					</div>
 				</div>
-				<div className="absolute bottom-4 right-4 bg-white border-2 border-black rounded-full px-3 py-1 text-xs font-anton uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">Click to learn more</div>
 			</article>
 
 			<Modal isOpen={open} onClose={() => setOpen(false)} maxWidth="max-w-2xl">
