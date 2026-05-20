@@ -20,6 +20,7 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
     twitter_handle: '',
     project_name: '',
     description: '',
+    category: '',
     live_url: '',
     github_url: '',
     team_members: '',
@@ -31,7 +32,15 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const categories = [
+    'AI & Machine Learning',
+    'Software & Web',
+    'Design & UX',
+    'Creative & Media',
+    'Other'
+  ];
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     if (name === 'description' && value.length > 500) return;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -56,7 +65,7 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
     setError(null);
 
     // Validation
-    if (!formData.builder_name || !formData.project_name || !formData.description || !formData.live_url) {
+    if (!formData.builder_name || !formData.project_name || !formData.description || !formData.live_url || !formData.category) {
       setError('Please fill in all required fields');
       setIsLoading(false);
       return;
@@ -86,9 +95,10 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
       if (supabaseError) throw supabaseError;
 
       router.push('/projects');
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Submission error:', err);
-      setError(err.message || 'An error occurred during submission');
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred during submission';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -139,6 +149,26 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
             placeholder="Awesome Project"
           />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Category <span className="text-red-500">*</span>
+          </label>
+          <select
+            name="category"
+            required
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all bg-white"
+          >
+            <option value="" disabled>Select a category</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
