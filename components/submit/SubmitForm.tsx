@@ -6,12 +6,17 @@ import { Button } from '../ui/Button';
 import { uploadToCloudinary } from '@/lib/cloudinary/upload';
 import { supabase } from '@/lib/supabase/client';
 import { ProjectSubmission } from '@/types';
+import { HiCheckCircle } from 'react-icons/hi2';
 
 interface SubmitFormProps {
   className?: string;
+  onSuccess?: () => void;
 }
 
-export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100" }: SubmitFormProps) {
+export default function SubmitForm({ 
+  className = "max-w-2xl mx-auto space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100",
+  onSuccess 
+}: SubmitFormProps) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -30,13 +35,17 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const categories = [
-    'AI & Machine Learning',
-    'Software & Web',
-    'Design & UX',
-    'Creative & Media',
+    'AI',
+    'Software Engineering',
+    'Design',
+    'Cybersecurity',
+    'Edtech',
+    'Agritech',
+    'Creatives',
     'Other'
   ];
 
@@ -94,15 +103,36 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
 
       if (supabaseError) throw supabaseError;
 
-      router.push('/projects');
+      setIsSuccess(true);
+      
+      // Delay to show success message
+      setTimeout(() => {
+        if (onSuccess) {
+          onSuccess();
+        }
+        router.push('/projects');
+      }, 2000);
     } catch (err: unknown) {
       console.error('Submission error:', err);
       const errorMessage = err instanceof Error ? err.message : 'An error occurred during submission';
       setError(errorMessage);
-    } finally {
       setIsLoading(false);
     }
   };
+
+  if (isSuccess) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12 space-y-4 animate-in fade-in zoom-in duration-500">
+        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
+          <HiCheckCircle className="w-12 h-12 text-green-500" />
+        </div>
+        <div className="text-center">
+          <h3 className="text-2xl font-anton uppercase tracking-tight">Submission Successful!</h3>
+          <p className="text-gray-500 font-bold">Redirecting you to projects...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className={className}>
