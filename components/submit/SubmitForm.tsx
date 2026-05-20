@@ -9,9 +9,13 @@ import { ProjectSubmission } from '@/types';
 
 interface SubmitFormProps {
   className?: string;
+  onSuccess?: () => void;
 }
 
-export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100" }: SubmitFormProps) {
+export default function SubmitForm({ 
+  className = "max-w-2xl mx-auto space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100",
+  onSuccess 
+}: SubmitFormProps) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -33,10 +37,13 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
   const [error, setError] = useState<string | null>(null);
 
   const categories = [
-    'AI & Machine Learning',
-    'Software & Web',
-    'Design & UX',
-    'Creative & Media',
+    'AI',
+    'Software Engineering',
+    'Design',
+    'Cybersecurity',
+    'Edtech',
+    'Agritech',
+    'Creatives',
     'Other'
   ];
 
@@ -93,6 +100,10 @@ export default function SubmitForm({ className = "max-w-2xl mx-auto space-y-6 bg
         ]);
 
       if (supabaseError) throw supabaseError;
+
+      if (onSuccess) {
+        onSuccess();
+      }
 
       router.push('/projects');
     } catch (err: unknown) {

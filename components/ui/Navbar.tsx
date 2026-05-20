@@ -112,10 +112,13 @@ const Navbar = () => {
               Submit Your Project
             </h2>
             <p className="text-gray-500 font-bold">
-              Show us what you've built! Provide your details below.
+              Show us what you&apos;ve built! Provide your details below.
             </p>
           </div>
-          <SubmitForm className="space-y-4" />
+          <SubmitForm 
+            className="space-y-4" 
+            onSuccess={() => setShowModal(false)} 
+          />
         </div>
       </Modal>
 
