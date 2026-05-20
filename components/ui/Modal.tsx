@@ -41,7 +41,7 @@ const Modal = ({ isOpen, onClose, title = "", message = "", children, maxWidth =
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 15, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className={`bg-white border-4 border-black rounded-[2.5rem] p-8 md:p-12 ${maxWidth} w-full shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative max-h-[85vh] overflow-y-auto`}
+            className={`bg-white border-4 border-black rounded-[2.5rem] p-8 md:p-12 ${maxWidth} w-full shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative max-h-[85vh] overflow-y-auto scrollbar-hide`}
             onClick={(e) => e.stopPropagation()}
             data-lenis-prevent
           >
