@@ -33,6 +33,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 					<div className="flex-1 flex flex-col">
 						<h3 className="text-lg font-anton uppercase tracking-tight">{project.project_name}</h3>
 						<p className="text-xs text-zinc-500 mt-1">by {project.builder_name}{project.twitter_handle ? (<span className="text-indigo-600 ml-2">· {project.twitter_handle}</span>) : null}</p>
+						
+						<div className="mt-2">
+							<span className="px-2 py-0.5 bg-black text-white text-[10px] font-bold rounded uppercase">
+								{project.category}
+							</span>
+						</div>
 
 						<p className="mt-3 text-sm text-zinc-700 line-clamp-3 flex-1 leading-relaxed">{preview}</p>
 
@@ -69,7 +75,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 						</div>
 
 						<div className="min-w-0">
-							<h2 className="text-3xl font-anton uppercase leading-tight">{project.project_name}</h2>
+							<div className="flex items-center gap-3 flex-wrap">
+								<h2 className="text-3xl font-anton uppercase leading-tight">{project.project_name}</h2>
+								<span className="px-2 py-0.5 bg-black text-white text-[10px] font-bold rounded uppercase">
+									{project.category}
+								</span>
+							</div>
 							<p className="text-zinc-600 mt-2">by {project.builder_name} {project.twitter_handle ? <a href={`https://twitter.com/${project.twitter_handle.replace(/^@/, '')}`} target="_blank" rel="noreferrer" className="text-indigo-600 ml-2">{project.twitter_handle}</a> : null}</p>
 							<p className="text-zinc-500 mt-1">Submitted {new Date(project.created_at).toLocaleString()}</p>
 						</div>
