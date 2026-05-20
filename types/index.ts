@@ -5,6 +5,7 @@ export interface Project {
   twitter_handle?: string;
   project_name: string;
   description: string;
+  category: string;
   live_url: string;
   github_url?: string;
   team_members?: string;
