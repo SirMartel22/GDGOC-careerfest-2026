@@ -2,10 +2,10 @@
 
 import Hero from "@/components/careerfest/Hero";
 import Recaps from "@/components/careerfest/Recaps";
+import RegisterCTA from "@/components/careerfest/RegisterCTA";
 import Sessions from "@/components/careerfest/Sessions";
 import Speakers from "@/components/careerfest/Speakers";
 import WhatToExpect from "@/components/careerfest/WhatToExpect";
-// import RegisterSection from "@/components/careerfest/RegisterSection";
 // import FAQ from "@/components/careerfest/FAQ";
 
 export const metadata = {
@@ -21,9 +21,10 @@ export default function CareerFestPage() {
       <Sessions />
       <Speakers />
       <WhatToExpect />
+      <RegisterCTA />
       {/* 
       
-      <RegisterSection />
+      
       <FAQ /> */}
 
     </main>
