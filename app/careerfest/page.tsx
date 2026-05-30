@@ -1,12 +1,12 @@
 // app/careerfest/page.tsx
 
+import FAQ from "@/components/careerfest/FAQ";
 import Hero from "@/components/careerfest/Hero";
 import Recaps from "@/components/careerfest/Recaps";
+import RegisterCTA from "@/components/careerfest/RegisterCTA";
 import Sessions from "@/components/careerfest/Sessions";
 import Speakers from "@/components/careerfest/Speakers";
 import WhatToExpect from "@/components/careerfest/WhatToExpect";
-// import RegisterSection from "@/components/careerfest/RegisterSection";
-// import FAQ from "@/components/careerfest/FAQ";
 
 export const metadata = {
   title: "Main CareerFest Day 2026 | GDG-OC Unilorin",
@@ -21,11 +21,8 @@ export default function CareerFestPage() {
       <Sessions />
       <Speakers />
       <WhatToExpect />
-      {/* 
-      
-      <RegisterSection />
-      <FAQ /> */}
-
+      <RegisterCTA />
+      <FAQ />
     </main>
   );
 }
