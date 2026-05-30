@@ -5,11 +5,11 @@ import Matter from "matter-js";
 import { useEffect, useRef } from "react";
 
 const GOOGLE_COLORS = [
-  { bg: "#4285F4", text: "#FFFFFF" }, // Blue
-  { bg: "#34A853", text: "#FFFFFF" }, // Green
-  { bg: "#FAAB00", text: "#1E1E1E" }, // Yellow
-  { bg: "#EA4336", text: "#FFFFFF" }, // Red
-  { bg: "#F5F5F5", text: "#1E1E1E" }, // White
+  { bg: "#4285F4", text: "#FFFFFF" }, // Blue [cite: 40]
+  { bg: "#34A853", text: "#FFFFFF" }, // Green [cite: 38]
+  { bg: "#FAAB00", text: "#1E1E1E" }, // Yellow [cite: 39]
+  { bg: "#EA4336", text: "#FFFFFF" }, // Red [cite: 43]
+  { bg: "#F5F5F5", text: "#1E1E1E" }, // White [cite: 42]
 ];
 
 // Content tags
@@ -33,41 +33,26 @@ export default function Hero() {
     const engine = Engine.create({ gravity: { y: 0.8 } });
     const world = engine.world;
 
-    // --- HIGH-DPI / RETINA CRISP SCALE FIX ---
-    const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
     const width = container.clientWidth;
     const height = container.clientHeight;
-
-    // Set the internal canvas resolution upscaled by device pixel ratio
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-
-    // Match the display style down to standard CSS layout coordinates
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
+    canvas.width = width;
+    canvas.height = height;
 
     const render = Render.create({
       canvas: canvas,
       engine: engine,
       options: {
-        width: width * dpr,
-        height: height * dpr,
+        width: width,
+        height: height,
         background: "transparent",
         wireframes: false
       }
     });
 
-    // Make Matter.js scale its rendering context to match the high DPI backing
-    const context = canvas.getContext("2d");
-    if (context) {
-      context.scale(dpr, dpr);
-    }
-
     Render.run(render);
     const runner = Runner.create();
     Runner.run(runner, engine);
 
-    // Obstacles aligned based on base width coordinates
     const floor = Bodies.rectangle(width / 2, height + 30, width * 2, 60, { isStatic: true });
     const leftWall = Bodies.rectangle(-30, height / 2, 60, height * 2, { isStatic: true });
     const rightWall = Bodies.rectangle(width + 30, height / 2, 60, height * 2, { isStatic: true });
@@ -80,13 +65,13 @@ export default function Hero() {
       const y = Math.random() * -400 - 50;
 
       const pillWidth = text.length * 9 + 35;
-      const pillHeight = 44; // Slightly taller for cleaner layout clearance
+      const pillHeight = 40;
       const radius = pillHeight / 2;
 
       return Bodies.rectangle(x, y, pillWidth, pillHeight, {
         chamfer: { radius: radius },
-        restitution: 0.4,
-        friction: 0.15,
+        restitution: 0.5,
+        friction: 0.1,
         render: {
           fillStyle: colorScheme.bg,
           strokeStyle: "#1E1E1E",
@@ -99,13 +84,12 @@ export default function Hero() {
 
     Composite.add(world, pillBodies);
 
-    // Intercept render cycle to output high-resolution tracking fonts
     Matter.Events.on(render, "afterRender", () => {
+      const context = canvas.getContext("2d");
       if (!context) return;
 
-      context.save();
-      // Ensure text scales down seamlessly into the downscaled canvas space
-      context.font = "600 13px var(--font-outfit), sans-serif";
+      // Dynamically rendering canvas text using the layout's Outfit font style
+      context.font = "600 14px var(--font-outfit), sans-serif";
       context.textAlign = "center";
       context.textBaseline = "middle";
 
@@ -114,11 +98,8 @@ export default function Hero() {
         // @ts-ignore
         if (body.render && body.render.textConfig) {
           context.save();
-          
-          // Re-adjust physics coordinates out of the high-res multiplier window
-          context.translate(body.position.x / dpr, body.position.y / dpr);
+          context.translate(body.position.x, body.position.y);
           context.rotate(body.angle);
-          
           // @ts-ignore
           const config = body.render.textConfig;
           context.fillStyle = config.color;
@@ -126,14 +107,9 @@ export default function Hero() {
           context.restore();
         }
       });
-      context.restore();
     });
 
-    // Handle high-dpi mouse mapping offsets accurately
     const mouse = Mouse.create(render.canvas);
-    // Force Matter.js to understand the pixel ratio when dragging items
-    mouse.pixelRatio = dpr;
-
     const mouseConstraint = MouseConstraint.create(engine, {
       mouse: mouse,
       constraint: { stiffness: 0.2, render: { visible: false } }
@@ -166,7 +142,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="px-6 py-2 rounded-full border-2 border-[#1E1E1E] bg-[#FAAB00] text-[#1E1E1E] font-bold text-xs md:text-sm uppercase tracking-wider mb-6 shadow-[4px_4px_0px_0px_#1E1E1E]"
+          className="px-4 py-1.5 rounded-full border-2 border-[#1E1E1E] bg-[#FAAB00] text-[#1E1E1E] font-medium text-xs md:text-sm uppercase tracking-wider mb-6 shadow-[3px_3px_0px_0px_#1E1E1E] font-[family-name:var(--font-outfit)]"
         >
           JUNE 15, 2026 • MAIN CAREERFEST DAY
         </motion.div>
