@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Code2, Sparkles, Terminal } from "lucide-react";
+import { ArrowUpRight, Code2, Terminal } from "lucide-react";
 
 export default function RegisterCTA() {
   const REGISTRATION_URL = "https://gdg.community.dev/events/details/google-gdg-on-campus-university-of-ilorin-ilorin-nigeria-presents-careerfest-2026-career-ready-whats-next/";
@@ -28,7 +28,6 @@ export default function RegisterCTA() {
           viewport={{ once: true }}
           className="inline-flex items-center gap-2 bg-[#EA4336] text-white border-4 border-black px-5 py-2 mb-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-xl"
         >
-          <Sparkles className="w-4 h-4 fill-white" />
           <span className="text-xs md:text-sm font-outfit font-black uppercase tracking-wider">
             LIMITED SLOTS AVAILABLE
           </span>
@@ -63,7 +62,7 @@ export default function RegisterCTA() {
 
         {/* Decorative Floating Background Subtexts */}
         <div className="mt-8 font-outfit font-extrabold text-xs md:text-sm text-black/40 uppercase tracking-widest">
-          ⚡ ENTRY REQUIREMENT: AN OPEN MIND & YOUR LAPTOP ⚡
+            ENTRY REQUIREMENT: AN OPEN MIND & YOUR LAPTOP
         </div>
 
       </div>

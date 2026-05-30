@@ -5,7 +5,6 @@ import { CheckCircle2 } from "lucide-react";
 
 const BENEFITS = [
   { text: "Direct matching with internship opportunities", color: "#1E1E1E" },
-  { text: "Professional corporate headshots for your profiles", color: "#EA4336" },
   { text: "One-on-one CV optimization workshops", color: "#FAAB00" },
   { text: "Mentorship structures and direct ecosystem growth opportunities", color: "#34A853" },
 ];
