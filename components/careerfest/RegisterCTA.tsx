@@ -33,10 +33,9 @@ export default function RegisterCTA() {
           </span>
         </motion.div>
 
-        {/* Catchy Massive Heading */}
-        <h2 className="text-5xl md:text-8xl font-anton uppercase tracking-tighter leading-none mb-6">
+        <h2 className="text-5xl md:text-8xl font-anton uppercase tracking-tighter leading-none mb-6 text-[#1E1E1E]">
           DON&apos;T JUST BUILD.<br />
-          <span className="text-[#4285F4]">GET HIRED.</span>
+          GET HIRED.
         </h2>
 
         {/* Context Description */}
@@ -44,7 +43,6 @@ export default function RegisterCTA() {
           Secure your terminal seat for GDG On Campus CareerFest 2026. Review booths, hot-seat interview rounds, and direct tech placements are waiting.
         </p>
 
-        {/* --- THE ULTRA-THICK BRUTALIST REGISTER BUTTON --- */}
         <motion.a
           href={REGISTRATION_URL}
           target="_blank"
@@ -55,8 +53,6 @@ export default function RegisterCTA() {
         >
           CLAIM YOUR PASS
           <ArrowUpRight className="w-8 h-8 md:w-10 md:h-10 stroke-[3] transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
-          
-          {/* Internal block blueprint lines inside the button for depth */}
           <div className="absolute inset-1 border-2 border-dashed border-white/20 pointer-events-none rounded-lg" />
         </motion.a>
 
