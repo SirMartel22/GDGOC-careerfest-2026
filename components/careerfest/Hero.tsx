@@ -5,11 +5,11 @@ import Matter from "matter-js";
 import { useEffect, useRef } from "react";
 
 const GOOGLE_COLORS = [
-  { bg: "#4285F4", text: "#FFFFFF" }, // Blue [cite: 40]
-  { bg: "#34A853", text: "#FFFFFF" }, // Green [cite: 38]
-  { bg: "#FAAB00", text: "#1E1E1E" }, // Yellow [cite: 39]
-  { bg: "#EA4336", text: "#FFFFFF" }, // Red [cite: 43]
-  { bg: "#F5F5F5", text: "#1E1E1E" }, // White [cite: 42]
+  { bg: "#4285F4", text: "#FFFFFF" }, // Blue
+  { bg: "#34A853", text: "#FFFFFF" }, // Green
+  { bg: "#FAAB00", text: "#1E1E1E" }, // Yellow
+  { bg: "#EA4336", text: "#FFFFFF" }, // Red
+  { bg: "#F5F5F5", text: "#1E1E1E" }, // White
 ];
 
 // Content tags
@@ -75,7 +75,7 @@ export default function Hero() {
         render: {
           fillStyle: colorScheme.bg,
           strokeStyle: "#1E1E1E",
-          lineWidth: 2,
+          lineWidth: 4, 
           // @ts-ignore
           textConfig: { text: text, color: colorScheme.text }
         }
@@ -88,7 +88,6 @@ export default function Hero() {
       const context = canvas.getContext("2d");
       if (!context) return;
 
-      // Dynamically rendering canvas text using the layout's Outfit font style
       context.font = "600 14px var(--font-outfit), sans-serif";
       context.textAlign = "center";
       context.textBaseline = "middle";
@@ -146,14 +145,13 @@ export default function Hero() {
         >
           JUNE 15, 2026 • MAIN CAREERFEST DAY
         </motion.div>
-
         <motion.h1 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-6xl md:text-8xl lg:text-9xl font-normal text-[#1E1E1E] uppercase tracking-tight leading-none font-anton mb-6"
         >
-          CAREER<span className="text-[#EA4336]">FEST</span>
+          CAREERFEST
         </motion.h1>
 
         <motion.p
