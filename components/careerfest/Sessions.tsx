@@ -34,6 +34,7 @@ const SESSIONS_DATA = [
     description: "Review engineering and design case studies. Learn how to present projects so they prove your actual capabilities to hiring managers.",
     icon: Layers,
     color: "#FAAB00", 
+    align: "left",
   },
   {
     id: 4,
@@ -80,7 +81,7 @@ export default function Sessions() {
             THE TRACK PATHWAY • JUNE 15
           </span>
           <h2 className="text-5xl md:text-7xl font-anton text-[#F5F5F5] uppercase tracking-tighter leading-none">
-            PRACTICAL <span className="text-[#1E1E1E]">SESSIONS</span>
+            PRACTICAL SESSIONS
           </h2>
           <p className="text-base md:text-xl text-[#1E1E1E] font-outfit font-bold max-w-xl mx-auto mt-6 leading-snug">
             Follow the journey through five core hubs engineered to elevate your engineering, design, and placement capabilities.
@@ -89,12 +90,9 @@ export default function Sessions() {
 
         {/* Timeline Wrapper Grid */}
         <div className="relative mt-12">
-          {/* Main Structural Center Spine Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[6px] bg-black z-0 rounded-full hidden md:block -translate-x-1/2" />
-          
-          {/* Active Scroll-Chasing Indicator Layer */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[6px] bg-black z-0 rounded-full -translate-x-1/2" />
           <motion.div 
-            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[6px] origin-top bg-white -translate-x-1/2 z-0 rounded-full hidden md:block"
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[6px] origin-top bg-white -translate-x-1/2 z-0 rounded-full"
             style={{ scaleY }}
           />
 
@@ -109,7 +107,7 @@ export default function Sessions() {
                   key={session.id}
                   className={`flex flex-col md:flex-row w-full items-center ${
                     isLeft ? "md:justify-start" : "md:justify-end"
-                  } relative pl-10 md:pl-0`}
+                  } relative pl-12 md:pl-0`}
                 >
                   
                   {/* Timeline Intersection Node Dot Component */}
@@ -118,7 +116,7 @@ export default function Sessions() {
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ type: "spring", delay: 0.05 }}
-                    className="absolute left-2 md:left-1/2 w-8 h-8 rounded-full border-4 border-black -translate-x-1/2 flex items-center justify-center z-20 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors duration-300"
+                    className="absolute left-4 md:left-1/2 w-8 h-8 rounded-full border-4 border-black -translate-x-1/2 flex items-center justify-center z-20 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors duration-300"
                     style={{ backgroundColor: session.color }}
                   >
                     <div className="w-2 h-2 rounded-full bg-white" />
