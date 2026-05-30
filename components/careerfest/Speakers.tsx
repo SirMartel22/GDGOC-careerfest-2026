@@ -99,11 +99,14 @@ export default function Speakers() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 border-b-4 border-black pb-8">
           <div>
-            <span className="text-sm font-outfit uppercase tracking-widest text-[#EA4336] font-bold block mb-2">
-              // EXPERT SELECTION
-            </span>
+            <div className="bg-white/40 px-3 py-1 border-2 border-black rounded-xl w-fit mb-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <span className="text-xs font-outfit uppercase tracking-widest text-[#EA4336] font-extrabold block">
+                EXPERT SELECTION
+              </span>
+            </div>
+            
             <h2 className="text-5xl md:text-7xl font-anton text-[#1E1E1E] uppercase tracking-tighter leading-none">
-              MINDSET <span className="text-[#4285F4]">SPEAKERS</span>
+              MINDSET SPEAKERS
             </h2>
           </div>
           <p className="text-base md:text-xl text-[#1E1E1E]/80 font-outfit font-bold max-w-sm leading-snug">
@@ -121,17 +124,17 @@ export default function Speakers() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               onClick={() => setSelectedSpeaker(speaker)}
-              className="relative w-full h-[400px] md:h-[450px] bg-white border-4 border-black p-3 cursor-pointer group transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+              className="relative w-full h-[400px] md:h-[450px] bg-white border-4 border-black p-3 cursor-pointer group transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-2xl"
             >
               {/* --- THICK BRUTALIST WIREFRAME CORNER HANDLES --- */}
-              <div className="absolute -top-2 -left-2 w-3.5 h-3.5 bg-white border-2 border-black z-20" />
-              <div className="absolute -top-2 -right-2 w-3.5 h-3.5 bg-white border-2 border-black z-20" />
-              <div className="absolute -bottom-2 -left-2 w-3.5 h-3.5 bg-white border-2 border-black z-20" />
-              <div className="absolute -bottom-2 -right-2 w-3.5 h-3.5 bg-white border-2 border-black z-20" />
+              <div className="absolute -top-2 -left-2 w-3.5 h-3.5 bg-white border-2 border-black z-20 rounded-sm" />
+              <div className="absolute -top-2 -right-2 w-3.5 h-3.5 bg-white border-2 border-black z-20 rounded-sm" />
+              <div className="absolute -bottom-2 -left-2 w-3.5 h-3.5 bg-white border-2 border-black z-20 rounded-sm" />
+              <div className="absolute -bottom-2 -right-2 w-3.5 h-3.5 bg-white border-2 border-black z-20 rounded-sm" />
 
               {/* Dynamic Inner Structural Accent Frame Line */}
               <div 
-                className="absolute inset-1.5 border-2 pointer-events-none z-10 transition-transform duration-300" 
+                className="absolute inset-1.5 border-2 pointer-events-none z-10 transition-transform duration-300 rounded-xl" 
                 style={{ borderColor: speaker.color }}
               />
 
@@ -142,17 +145,16 @@ export default function Speakers() {
                 </span>
               </div>
 
-              {/* Speaker Headshot Container */}
-              <div className="w-full h-full relative overflow-hidden border-2 border-black bg-gray-100 rounded-sm">
+              <div className="w-full h-full relative overflow-hidden border-2 border-black bg-gray-100 rounded-xl">
                 <Image
                   src={speaker.image}
                   alt={speaker.name}
                   fill
                   sizes="300px"
-                  className="object-cover transition-transform duration-500 scale-100 group-hover:scale-102"
+                  className="object-cover transition-transform duration-500 scale-100 group-hover:scale-102 rounded-xl"
                 />
                 {/* Overlay shading gradient layer */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60 pointer-events-none rounded-xl" />
               </div>
 
               {/* Bottom Right Floating Core Details Capsule */}
@@ -208,13 +210,13 @@ export default function Speakers() {
               </button>
 
               {/* Profile Image Column Left */}
-              <div className="w-full md:w-[220px] h-[240px] relative flex-shrink-0 border-4 border-black p-2 bg-white mt-6 md:mt-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <div className="w-full h-full relative overflow-hidden border-2 border-black rounded-sm">
+              <div className="w-full md:w-[220px] h-[240px] relative flex-shrink-0 border-4 border-black p-2 bg-white mt-6 md:mt-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-2xl">
+                <div className="w-full h-full relative overflow-hidden border-2 border-black rounded-xl">
                   <Image
                     src={selectedSpeaker.image}
                     alt={selectedSpeaker.name}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-xl"
                   />
                 </div>
               </div>
