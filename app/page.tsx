@@ -1,91 +1,26 @@
-"use client";
+import FAQ from "@/components/careerfest/FAQ";
+import Hero from "@/components/careerfest/Hero";
+import Recaps from "@/components/careerfest/Recaps";
+import RegisterCTA from "@/components/careerfest/RegisterCTA";
+import Sessions from "@/components/careerfest/Sessions";
+import Speakers from "@/components/careerfest/Speakers";
+import WhatToExpect from "@/components/careerfest/WhatToExpect";
 
-import { motion } from "framer-motion";
-import Hero from "@/components/hackathon/Hero";
-import About from "@/components/hackathon/About";
-import Rewards from "@/components/hackathon/Rewards";
-import Rules from "@/components/hackathon/Rules";
-import FAQ from "@/components/hackathon/FAQ";
-import Register from "@/components/hackathon/Register";
-import Sponsors from "@/components/hackathon/Sponsors";
-import Schedule from "@/components/hackathon/Schedule";
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } 
-  }
+export const metadata = {
+  title: "Main CareerFest Day 2026 | GDG-OC Unilorin",
+  description: "A practical employability and career-growth experience featuring CV reviews, live mock interviews, portfolio building, and visibility sessions.",
 };
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <main className="bg-[#1E1E1E] min-h-screen text-[#F5F5F5] font-outfit overflow-x-hidden">
       <Hero />
-      
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <About />
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <Rewards />
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <Rules />
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <Schedule />
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <Sponsors />
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <FAQ />
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <Register />
-      </motion.div>
-    </div>
+      <Recaps />
+      <Sessions />
+      <Speakers />
+      <WhatToExpect />
+      <RegisterCTA />
+      <FAQ />
+    </main>
   );
 }

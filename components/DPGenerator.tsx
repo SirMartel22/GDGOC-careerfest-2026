@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
 
 const DPGenerator = () => {
@@ -20,27 +20,22 @@ const DPGenerator = () => {
     }
   };
 
-  // Preload template on mount and whenever name/image changes
-  useEffect(() => {
-    drawDP();
-  }, [image, name]);
-
-  const drawDP = () => {
+  const drawDP = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const template = new window.Image();
-    template.src = "/download-dp.png";
+    template.src = "/dp-image.png";
     template.onload = () => {
       canvas.width = template.width;
       canvas.height = template.height;
       ctx.drawImage(template, 0, 0);
 
-      const centerX = canvas.width * 0.742;
-      const centerY = canvas.height * 0.388;
-      const radius = canvas.width * 0.115;
+      const centerX = canvas.width * 0.6994;
+      const centerY = canvas.height * 0.5123;
+      const radius = canvas.width * 0.2074;
 
       if (image) {
         const userImg = new window.Image();
@@ -71,10 +66,15 @@ const DPGenerator = () => {
 
           ctx.beginPath();
           ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-          ctx.lineWidth = 3;
+          ctx.lineWidth = 12;
           ctx.strokeStyle = "#000000";
           ctx.stroke();
 
+          // After drawing the user image, draw the template on top 
+          // so that if the template has a transparent hole, it overlays perfectly.
+          // Or wait, if we clip the user image, it won't overflow the circle anyway!
+          // But we just draw the template FIRST right now in DPGenerator, and then user image on top.
+          
           drawName(ctx, canvas);
           setPreviewUrl(canvas.toDataURL("image/png"));
         };
@@ -84,46 +84,38 @@ const DPGenerator = () => {
         setPreviewUrl(canvas.toDataURL("image/png"));
       }
     };
-  };
+  }, [image, name]);
+
+  // Preload template on mount and whenever drawDP changes
+  useEffect(() => {
+    drawDP();
+  }, [drawDP]);
 
   const drawName = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
     if (!name) return;
 
-    const pillX = canvas.width * 0.742;
-    const pillY = canvas.height * 0.61;
-    const pillW = canvas.width * 0.25;
-    const pillH = canvas.height * 0.055;
-    const radius = pillH / 2;
+    // Center horizontally under the circle
+    const textX = canvas.width * 0.6994;
+    
+    // Position vertically below the circle (circle bottom is at centerY + radius = ~2332px)
+    // 2530px is a great height that centers the text perfectly in the white/cream space
+    const textY = canvas.height * 0.7809;
 
-    ctx.beginPath();
-    ctx.moveTo(pillX - pillW / 2 + radius, pillY - pillH / 2);
-    ctx.lineTo(pillX + pillW / 2 - radius, pillY - pillH / 2);
-    ctx.quadraticCurveTo(pillX + pillW / 2, pillY - pillH / 2, pillX + pillW / 2, pillY - pillH / 2 + radius);
-    ctx.lineTo(pillX + pillW / 2, pillY + pillH / 2 - radius);
-    ctx.quadraticCurveTo(pillX + pillW / 2, pillY + pillH / 2, pillX + pillW / 2 - radius, pillY + pillH / 2);
-    ctx.lineTo(pillX - pillW / 2 + radius, pillY + pillH / 2);
-    ctx.quadraticCurveTo(pillX - pillW / 2, pillY + pillH / 2, pillX - pillW / 2 + radius, pillY + pillH / 2);
-    ctx.lineTo(pillX - pillW / 2, pillY - pillH / 2 + radius);
-    ctx.quadraticCurveTo(pillX - pillW / 2, pillY - pillH / 2, pillX - pillW / 2 + radius, pillY - pillH / 2);
-    ctx.closePath();
-
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fill();
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = "#000000";
-    ctx.stroke();
-
-    let fontSize = 32;
+    // Let's use a nice large, premium font size for 3240x3240 canvas
+    let fontSize = 110;
     ctx.font = `bold ${fontSize}px Anton, sans-serif`;
-    while (ctx.measureText(name).width > pillW - 20 && fontSize > 16) {
-      fontSize -= 2;
+    
+    // Limit text width to ~1100px to prevent overlapping the card edges
+    const maxWidth = canvas.width * 0.34;
+    while (ctx.measureText(name).width > maxWidth && fontSize > 40) {
+      fontSize -= 4;
       ctx.font = `bold ${fontSize}px Anton, sans-serif`;
     }
 
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#1E1E1E";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(name, pillX, pillY);
+    ctx.fillText(name, textX, textY);
   };
 
   const downloadDP = () => {

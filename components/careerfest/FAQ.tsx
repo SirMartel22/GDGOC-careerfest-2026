@@ -34,26 +34,18 @@ export default function FAQ() {
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="w-full mb-16 border-b-4 border-black pb-8">
-          {/* Changed grid layout to 60% left, 40% right fraction distribution on desktop splits */}
-          <div className="grid grid-cols-1 md:grid-cols-[0.6fr_0.4fr] gap-8 items-end w-full">
-            
-            {/* Left Side: Badge and Heading (Allocated 60% Space to fit layout on two lines) */}
-            <div className="flex flex-col">
-              <div className="inline-block bg-white border-4 border-black px-4 py-1.5 mb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-xl self-start">
+        <div className="w-full mb-16 pb-4 flex flex-col gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 w-full">
+            <div className="flex-1">
+              <div className="inline-block bg-white border-4 border-black px-4 py-1.5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-xl self-start">
                 <span className="text-xs md:text-sm font-outfit uppercase tracking-wider text-black font-black block">
                   GOT QUESTIONS?
                 </span>
               </div>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-anton uppercase tracking-tighter leading-none text-white drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-                FREQUENT KNOWLEDGE BASE
-              </h2>
             </div>
-
-            {/* Right Side: Solid Shape and Text Stack (Allocated 40% Space) */}
-            <div className="flex flex-col items-start md:items-end gap-4 w-full">
-              
-              {/* Solid Shape Graphic Element */}
+            
+            {/* Solid Shape Graphic Element */}
+            <div className="w-full md:w-[40%] flex justify-start">
               <div className="w-full max-w-[360px] md:max-w-[500px]">
                 <Image 
                   src="/solid-shape.png"
@@ -64,13 +56,22 @@ export default function FAQ() {
                   priority
                 />
               </div>
+            </div>
+          </div>
 
-              {/* Description Context Paragraph */}
-              <p className="text-sm md:text-base text-black font-outfit font-black max-w-sm leading-snug md:text-right">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 w-full">
+            <div className="flex-1">
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-anton uppercase tracking-tighter leading-none text-white m-0">
+                FREQUENT KNOWLEDGE BASE
+              </h2>
+            </div>
+
+            {/* Description Context Paragraph */}
+            <div className="w-full md:w-[40%] flex justify-start">
+              <p className="text-sm md:text-base text-black font-outfit font-black max-w-sm leading-snug text-left">
                 Quick breakdowns regarding layout specs, gate pass requirements, and venue mechanics.
               </p>
             </div>
-
           </div>
         </div>
 

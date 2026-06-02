@@ -32,27 +32,49 @@ const INTEREST_TAGS = [
 
 export default function WhatToExpect() {
   return (
-    <section className="w-full bg-[#4285F4] py-24 px-4 md:px-8 border-b-4 border-black relative overflow-hidden select-none">
+    <section id="about" className="w-full bg-[#4285F4] py-24 px-4 md:px-8 border-b-4 border-black relative overflow-hidden select-none">
       {/* Structural Tech Blueprint Mesh Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.15)_1px,transparent_1px)] bg-[size:32px_32px]" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="flex justify-between items-start mb-6 w-full">
-          <div>
-            <div className="inline-block bg-[#FAAB00] border-4 border-black px-4 py-2 mb-6 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-md">
-              <span className="text-xs md:text-sm font-outfit uppercase tracking-wider text-black font-black block">
-                MAIN DAY EXPECTATIONS • JUNE 15
-              </span>
+        
+        {/* Section Header */}
+        <div className="w-full mb-16 pb-4 flex flex-col gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 w-full">
+            <div className="flex-1">
+              <div className="inline-block bg-[#FAAB00] border-4 border-black px-4 py-1.5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-xl self-start">
+                <span className="text-xs md:text-sm font-outfit uppercase tracking-wider text-black font-black block">
+                  MAIN DAY EXPECTATIONS • JUNE 15
+                </span>
+              </div>
+            </div>
+
+            <div className="w-full md:w-[40%] flex justify-start">
+              <div className="w-full max-w-[280px] md:max-w-[320px]">
+                <Image 
+                  src="/solid-shape.png"
+                  alt="Design Shape"
+                  width={400}
+                  height={80}
+                  className="h-auto w-full object-contain block"
+                />
+              </div>
             </div>
           </div>
-          
-          <Image 
-            src="/solid-shape.png"
-            alt="Design Shape"
-            width={400}
-            height={80}
-            className="h-auto opacity-90 hidden md:block w-auto max-w-[550px]"
-          />
+
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 w-full">
+            <div className="flex-1">
+              <h2 className="text-5xl md:text-7xl font-anton text-white uppercase tracking-tighter leading-none m-0">
+                WHAT YOU WALK AWAY WITH
+              </h2>
+            </div>
+
+            <div className="w-full md:w-[40%] flex justify-start">
+              <p className="text-sm md:text-base text-white font-outfit font-black max-w-sm leading-snug text-left drop-shadow-[1px_1px_0px_rgba(0,0,0,0.3)]">
+                CareerFest 2026 is engineered to give you real, testable capabilities and structural placement growth.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Content Splitting Grid */}
@@ -60,12 +82,6 @@ export default function WhatToExpect() {
 
           {/* Left Column Content Layout */}
           <div>
-            <h2 className="text-5xl md:text-7xl font-anton text-white uppercase tracking-tighter leading-none mb-6 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-              WHAT YOU WALK AWAY WITH
-            </h2>
-            <p className="text-base md:text-xl text-white font-outfit font-bold mb-10 max-w-lg leading-snug drop-shadow-[1px_1px_0px_rgba(0,0,0,0.3)]">
-              CareerFest 2026 is engineered to give you real, testable capabilities and structural placement growth.
-            </p>
 
             {/* Thick Outlined Checklist System */}
             <div className="flex flex-col gap-4">
