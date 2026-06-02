@@ -15,11 +15,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/#about" },
-    { name: "RSVP", href: "/#register" },
-    // { name: "Generate DP", href: "/get-dp" },
+    { name: "Generate DP", href: "/get-dp" },
     { name: "Venue", href: "/#schedule" },
   ];
+
+  const REGISTRATION_URL = "https://gdg.community.dev/events/details/google-gdg-on-campus-university-of-ilorin-ilorin-nigeria-presents-careerfest-2026-career-ready-whats-next/";
 
   return (
     <>
@@ -57,12 +57,14 @@ const Navbar = () => {
 
           {/* CTA Section - Right */}
           <div className="hidden md:block">
-            <button 
-              onClick={() => setShowModal(true)}
-              className="bg-[#EA4336] text-white px-8 py-2.5 rounded-2xl font-anton text-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all uppercase tracking-wide cursor-pointer"
+            <a 
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#EA4336] text-white px-8 py-2.5 rounded-2xl font-anton text-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all uppercase tracking-wide cursor-pointer"
             >
-              Submit Project
-            </button>
+              RSVP
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,15 +90,15 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <button 
-              onClick={() => {
-                setIsOpen(false);
-                setShowModal(true);
-              }}
-              className="w-full max-w-xs text-center bg-[#EA4336] text-white px-8 py-5 rounded-2xl font-anton text-2xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] uppercase tracking-wide mt-4"
+            <a 
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="w-full max-w-xs text-center bg-[#EA4336] text-white px-8 py-5 rounded-2xl font-anton text-2xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] uppercase tracking-wide mt-4 cursor-pointer"
             >
-              Submit Project
-            </button>
+              RSVP
+            </a>
           </div>
         </div>
       </nav>

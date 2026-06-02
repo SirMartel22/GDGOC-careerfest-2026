@@ -173,7 +173,7 @@ export default function Recaps() {
                   className="w-full h-full flex flex-col items-center justify-center p-6 text-center border-2 border-black rounded-xl"
                   style={{ backgroundColor: item.bgColor }}
                 >
-                  <h3 className="text-5xl md:text-6xl font-anton text-[#1E1E1E] tracking-tighter uppercase leading-none mb-4 drop-shadow-[2px_2px_0px_rgba(255,255,255,1)]">
+                  <h3 className="text-5xl md:text-6xl font-anton text-[#1E1E1E] tracking-tighter uppercase leading-none mb-4">
                     {item.value}
                   </h3>
                   <span className="px-4 py-2 bg-white text-[#1E1E1E] font-outfit text-xs md:text-sm font-black uppercase rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
