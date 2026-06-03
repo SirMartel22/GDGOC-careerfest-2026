@@ -90,7 +90,7 @@ export default function Sessions() {
 
             <div className="w-full md:w-[40%] flex justify-start">
               <div className="w-full max-w-[280px] md:max-w-[320px]">
-                <Image 
+                <Image
                   src="/solid-shape.png"
                   alt="Design Shape"
                   width={400}

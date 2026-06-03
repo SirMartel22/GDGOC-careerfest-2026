@@ -13,7 +13,7 @@ export default function RegisterCTA() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:24px_24px]" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        
+
         {/* Header Alignment: Limited Slots left, Solid Shape right */}
         <div className="flex justify-between items-center mb-12 w-full">
           <div className="flex items-center gap-2 bg-[#EA4336] text-white px-5 py-2.5 rounded-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-fit">
@@ -21,8 +21,8 @@ export default function RegisterCTA() {
               LIMITED SLOTS AVAILABLE
             </span>
           </div>
-          
-          <Image 
+
+          <Image
             src="/solid-shape.png"
             alt="Design Shape"
             width={400}

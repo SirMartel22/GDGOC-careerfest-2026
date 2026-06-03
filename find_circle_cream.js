@@ -5,79 +5,38 @@ async function run() {
   const w = image.bitmap.width;
   const h = image.bitmap.height;
   
-  const cx = 2266;
-  const cy = 1711;
+  // The name text "Adeleke" is printed under the circle.
+  // The circle ends around y=2334. The text is around y=2400 to 2600.
+  // Let's sample colors in a box from x=1800 to 2700 and y=2450 to 2600.
+  const colorCounts = {};
   
-  console.log(`Checking outward from (${cx}, ${cy}):`);
+  const startX = 1800;
+  const endX = 2700;
+  const startY = 2450;
+  const endY = 2600;
   
-  // Scan right
-  let rightBoundary = cx;
-  for (let x = cx; x < w; x++) {
-    const idx = (cy * w + x) * 4;
-    const r = image.bitmap.data[idx];
-    const g = image.bitmap.data[idx+1];
-    const b = image.bitmap.data[idx+2];
-    
-    // Check if we hit black/dark border (e.g. RGB < 50)
-    if (r < 50 && g < 50 && b < 50) {
-      rightBoundary = x;
-      break;
+  for (let y = startY; y < endY; y += 2) {
+    for (let x = startX; x < endX; x += 2) {
+      const idx = (y * w + x) * 4;
+      const r = image.bitmap.data[idx];
+      const g = image.bitmap.data[idx+1];
+      const b = image.bitmap.data[idx+2];
+      
+      const key = `${r},${g},${b}`;
+      colorCounts[key] = (colorCounts[key] || 0) + 1;
     }
   }
   
-  // Scan left
-  let leftBoundary = cx;
-  for (let x = cx; x >= 0; x--) {
-    const idx = (cy * w + x) * 4;
-    const r = image.bitmap.data[idx];
-    const g = image.bitmap.data[idx+1];
-    const b = image.bitmap.data[idx+2];
+  const sorted = Object.entries(colorCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
     
-    if (r < 50 && g < 50 && b < 50) {
-      leftBoundary = x;
-      break;
-    }
+  console.log("Top colors in the name text region:");
+  for (const [color, count] of sorted) {
+    const [r, g, b] = color.split(",").map(Number);
+    const hex = "#" + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
+    console.log(`Color: ${hex} (${r},${g},${b}) -> Count: ${count}`);
   }
-
-  // Scan down
-  let downBoundary = cy;
-  for (let y = cy; y < h; y++) {
-    const idx = (y * w + cx) * 4;
-    const r = image.bitmap.data[idx];
-    const g = image.bitmap.data[idx+1];
-    const b = image.bitmap.data[idx+2];
-    
-    if (r < 50 && g < 50 && b < 50) {
-      downBoundary = y;
-      break;
-    }
-  }
-
-  // Scan up
-  let upBoundary = cy;
-  for (let y = cy; y >= 0; y--) {
-    const idx = (y * w + cx) * 4;
-    const r = image.bitmap.data[idx];
-    const g = image.bitmap.data[idx+1];
-    const b = image.bitmap.data[idx+2];
-    
-    if (r < 50 && g < 50 && b < 50) {
-      upBoundary = y;
-      break;
-    }
-  }
-
-  console.log(`Left border: ${leftBoundary}, Right border: ${rightBoundary}, Width: ${rightBoundary - leftBoundary}`);
-  console.log(`Up border: ${upBoundary}, Down border: ${downBoundary}, Height: ${downBoundary - upBoundary}`);
-  
-  const finalCx = (leftBoundary + rightBoundary) / 2;
-  const finalCy = (upBoundary + downBoundary) / 2;
-  const radiusX = (rightBoundary - leftBoundary) / 2;
-  const radiusY = (downBoundary - upBoundary) / 2;
-  
-  console.log(`Adjusted Center: x=${finalCx}, y=${finalCy}`);
-  console.log(`Radius X: ${radiusX}, Radius Y: ${radiusY}`);
-  console.log(`Normalized Center: cx=${(finalCx/w).toFixed(4)}, cy=${(finalCy/h).toFixed(4)}, r=${((radiusX+radiusY)/2/w).toFixed(4)}`);
 }
 
 run().catch(console.error);
