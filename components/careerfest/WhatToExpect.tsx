@@ -81,7 +81,7 @@ export default function WhatToExpect() {
           {/* Right Column Interactive Tags Container Box (Span 5) */}
           <div className="lg:col-span-6 flex flex-col space-y-6 w-full">
             {/* Top right design shape aligned to badge */}
-            <div className="flex justify-end w-full">
+            <div className="hidden md:flex justify-end w-full">
               <div className="w-full max-w-[280px] md:max-w-[320px] lg:max-w-[400px]">
                 <Image
                   src="/solid-shape.png"

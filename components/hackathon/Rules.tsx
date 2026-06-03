@@ -48,7 +48,7 @@ const Rules = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
-            <h2 className="text-6xl md:text-8xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter mb-10">
+            <h2 className="text-5xl md:text-8xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter mb-10">
               How to <br /> Build Right.
             </h2>
             <div className="relative aspect-video group mt-12">

@@ -15,7 +15,7 @@ const GOOGLE_COLORS = [
 // Content tags
 const TAGS = [
   "Developers", "Designers", "Creators", "Writers", "Storytellers",
-  "CV Review", "Mock Interviews", "Portfolio", "Workshops", "Visibility", 
+  "CV Review", "Mock Interviews", "Portfolio", "Workshops", "Visibility",
   "Techies", "Cloud", "AI/ML", "Web", "Mobile", "GDG-OC"
 ];
 
@@ -33,10 +33,14 @@ export default function Hero() {
     const engine = Engine.create({ gravity: { y: 0.8 } });
     const world = engine.world;
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    canvas.width = width;
-    canvas.height = height;
+    const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+    let width = container.clientWidth;
+    let height = container.clientHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
 
     const render = Render.create({
       canvas: canvas,
@@ -45,7 +49,8 @@ export default function Hero() {
         width: width,
         height: height,
         background: "transparent",
-        wireframes: false
+        wireframes: false,
+        pixelRatio: dpr,
       }
     });
 
@@ -56,12 +61,37 @@ export default function Hero() {
     const floor = Bodies.rectangle(width / 2, height + 30, width * 2, 60, { isStatic: true });
     const leftWall = Bodies.rectangle(-30, height / 2, 60, height * 2, { isStatic: true });
     const rightWall = Bodies.rectangle(width + 30, height / 2, 60, height * 2, { isStatic: true });
-    
+
     Composite.add(world, [floor, leftWall, rightWall]);
+
+    // Handle viewport changes and rotation dynamically to avoid blurriness and skewing
+    const handleResize = () => {
+      if (!container || !canvas || !render) return;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+
+      render.options.width = w;
+      render.options.height = h;
+      render.bounds.max.x = w;
+      render.bounds.max.y = h;
+
+      Matter.Body.setPosition(floor, { x: w / 2, y: h + 30 });
+      Matter.Body.setPosition(leftWall, { x: -30, y: h / 2 });
+      Matter.Body.setPosition(rightWall, { x: w + 30, y: h / 2 });
+    };
+
+    window.addEventListener("resize", handleResize);
+    const settleTimeout = setTimeout(handleResize, 150);
 
     const pillBodies = TAGS.map((text, idx) => {
       const colorScheme = GOOGLE_COLORS[idx % GOOGLE_COLORS.length];
-      const x = Math.random() * (width - 200) + 100;
+      // Spawn near the center to prevent pills falling outside on narrower screens
+      const x = Math.random() * (width * 0.6) + (width * 0.2);
       const y = Math.random() * -400 - 50;
 
       const pillWidth = text.length * 9 + 35;
@@ -75,7 +105,7 @@ export default function Hero() {
         render: {
           fillStyle: colorScheme.bg,
           strokeStyle: "#1E1E1E",
-          lineWidth: 4, 
+          lineWidth: 4,
           // @ts-ignore
           textConfig: { text: text, color: colorScheme.text }
         }
@@ -118,6 +148,8 @@ export default function Hero() {
     render.mouse = mouse;
 
     return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(settleTimeout);
       Render.stop(render);
       Runner.stop(runner);
       Composite.clear(world, false);
@@ -126,16 +158,16 @@ export default function Hero() {
   }, []);
 
   return (
-    <section 
-      ref={sceneRef} 
-      className="relative w-full h-[85vh] min-h-[550px] bg-[#F5F5F5] overflow-hidden flex flex-col items-center justify-center border-b-4 border-[#1E1E1E] px-4 select-none"
+    <section
+      ref={sceneRef}
+      className="relative w-full h-[85vh] min-h-[550px] bg-[#F5F5F5] overflow-hidden flex flex-col items-center justify-start pt-10 md:justify-center md:pt-20 border-b-4 border-[#1E1E1E] px-4 select-none"
     >
       {/* Physics Canvas Layer */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-10 pointer-events-auto" />
 
       {/* Hero Content Block */}
       <div className="relative z-0 text-center max-w-4xl flex flex-col items-center pointer-events-none px-4">
-        
+
         {/* Date Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -145,22 +177,22 @@ export default function Hero() {
         >
           JUNE 15, 2026 • MAIN CAREERFEST DAY
         </motion.div>
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="text-6xl md:text-8xl lg:text-9xl font-normal text-[#1E1E1E] uppercase tracking-tight leading-none font-anton mb-6"
+          className="text-5xl md:text-8xl lg:text-9xl font-anton text-[#1E1E1E] uppercase tracking-tighter leading-[0.9] mb-6"
         >
-          CAREERFEST
+          GDGOC UNILORIN CAREERFEST 2026
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="text-base md:text-xl text-[#1E1E1E]/80 max-w-2xl font-outfit font-light leading-relaxed px-2"
+          className="text-base md:text-xl text-[#1E1E1E]/90 max-w-2xl font-outfit font-black leading-relaxed px-2 pb-34"
         >
-          No more long talks. No more passive sessions. A practical student-focused experience designed to help you build skills, improve visibility, and become opportunity-ready. 
+          No more long talks. No more passive sessions. A practical student-focused experience designed to help you build skills, improve visibility, and become opportunity-ready.
         </motion.p>
       </div>
     </section>

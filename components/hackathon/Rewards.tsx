@@ -65,7 +65,7 @@ const Rewards = () => {
           />
         </div>
 
-        <h2 className="text-6xl md:text-8xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter mb-16">
+        <h2 className="text-5xl md:text-8xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter mb-16">
           Build. Get Noticed. <br /> Get Rewarded.
         </h2>
 

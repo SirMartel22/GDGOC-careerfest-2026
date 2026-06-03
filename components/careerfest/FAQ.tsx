@@ -28,7 +28,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full bg-[#FAAB00] py-24 px-2 md:px-4 border-b-4 border-black relative select-none text-black">
+    <section className="w-full bg-[#FAAB00] py-24 px-4 md:px-4 border-b-4 border-black relative select-none text-black">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -45,7 +45,7 @@ export default function FAQ() {
             </div>
 
             {/* Solid Shape Graphic Element */}
-            <div className="w-full md:w-[40%] flex justify-start">
+            <div className="hidden md:flex w-full md:w-[40%] justify-start">
               <div className="w-full max-w-[360px] md:max-w-[500px]">
                 <Image
                   src="/solid-shape.png"
@@ -59,10 +59,10 @@ export default function FAQ() {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 w-full justify-start">
             <div className="flex-1">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-anton uppercase tracking-tighter leading-none text-white m-0">
-                FREQUENT KNOWLEDGE <br />BASE
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-anton uppercase tracking-tighter leading-none text-white m-0">
+                FREQUENT<br /> KNOWLEDGE BASE
               </h2>
             </div>
 

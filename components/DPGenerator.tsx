@@ -158,7 +158,7 @@ const DPGenerator = () => {
           <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] w-fit">
             <span className="font-bold text-xs tracking-widest uppercase text-[#1E1E1E]">CareerFest '26</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter">
+          <h1 className="text-5xl md:text-5xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter">
             Represent <br /> the Movement.
           </h1>
         </div>

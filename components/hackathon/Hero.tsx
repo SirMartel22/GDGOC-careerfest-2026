@@ -65,7 +65,7 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
               className="max-w-5xl space-y-8"
             >
-              <h1 className="text-6xl md:text-9xl font-anton text-[#4285F4] leading-[0.9] uppercase tracking-tighter">
+              <h1 className="text-5xl md:text-9xl font-anton text-[#4285F4] leading-[0.9] uppercase tracking-tighter">
                 Build Something <br /> That Matters.
               </h1>
               <div className="space-y-4">
