@@ -32,7 +32,7 @@ export default function FAQ() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="w-full mb-16 pb-4 flex flex-col gap-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 w-full">
@@ -43,11 +43,11 @@ export default function FAQ() {
                 </span>
               </div>
             </div>
-            
+
             {/* Solid Shape Graphic Element */}
             <div className="w-full md:w-[40%] flex justify-start">
               <div className="w-full max-w-[360px] md:max-w-[500px]">
-                <Image 
+                <Image
                   src="/solid-shape.png"
                   alt="Design Shape"
                   width={400}
@@ -94,7 +94,7 @@ export default function FAQ() {
                     <HelpCircle className="w-5 h-5 md:w-6 md:h-6 text-[#4285F4] flex-shrink-0 stroke-[3]" />
                     <span>{faq.question}</span>
                   </div>
-                  
+
                   {/* Plus Icon Spinner */}
                   <motion.div
                     animate={{ rotate: isOpen ? 135 : 0 }}

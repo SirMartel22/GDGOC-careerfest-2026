@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="bg-[#1E1E1E] min-h-screen text-[#F5F5F5] font-outfit overflow-x-hidden">
+    <main className="bg-[#1E1E1E] min-h-screen text-[#F5F5F5] font-outfit overflow-x-hidden px-20">
       <Hero />
       <Recaps />
       <Sessions />
