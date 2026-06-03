@@ -62,7 +62,7 @@ export default function FAQ() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 w-full">
             <div className="flex-1">
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-anton uppercase tracking-tighter leading-none text-white m-0">
-                FREQUENT KNOWLEDGE BASE
+                FREQUENT KNOWLEDGE <br />BASE
               </h2>
             </div>
 
@@ -72,6 +72,7 @@ export default function FAQ() {
                 Quick breakdowns regarding layout specs, gate pass requirements, and venue mechanics.
               </p>
             </div>
+
           </div>
         </div>
 

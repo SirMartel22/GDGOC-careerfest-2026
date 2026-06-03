@@ -40,7 +40,7 @@ export default function WhatToExpect() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
           {/* Left Column Content Layout (Span 7) */}
-          <div className="lg:col-span-7 flex flex-col space-y-6 w-full">
+          <div className="lg:col-span-6 flex flex-col space-y-6 w-full">
             {/* Section Header Badge */}
             <div className="inline-block bg-[#FAAB00] border-4 border-black px-4 py-1.5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-xl self-start w-fit">
               <span className="text-xs md:text-sm font-outfit uppercase tracking-wider text-black font-black block">
@@ -54,7 +54,7 @@ export default function WhatToExpect() {
             </h2>
 
             {/* Description context paragraph */}
-            <p className="text-sm md:text-base lg:text-lg text-white font-outfit font-black max-w-xl leading-snug text-left drop-shadow-[1px_1px_0px_rgba(0,0,0,0.3)]">
+            <p className="text-sm md:text-base lg:text-lg text-white font-outfit font-black max-w-xl leading-snug text-left ">
               CareerFest 2026 is engineered to give you real, testable capabilities and structural placement growth.
             </p>
 
@@ -79,7 +79,7 @@ export default function WhatToExpect() {
           </div>
 
           {/* Right Column Interactive Tags Container Box (Span 5) */}
-          <div className="lg:col-span-5 flex flex-col space-y-6 w-full">
+          <div className="lg:col-span-6 flex flex-col space-y-6 w-full">
             {/* Top right design shape aligned to badge */}
             <div className="flex justify-end w-full">
               <div className="w-full max-w-[280px] md:max-w-[320px] lg:max-w-[400px]">
