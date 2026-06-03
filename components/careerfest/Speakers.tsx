@@ -14,7 +14,7 @@ const SPEAKERS_DATA = [
     company: "TalentMatch Global",
     trackBadge: "CV Review Booths",
     image: "/Images/speaker1.jpg",
-    color: "#4285F4", 
+    color: "#4285F4",
     bio: "Ex-Google Senior Engineer with over 8 years of experience vetting engineering talent across Europe and Africa. Specialist in clean technical resume mapping, portfolio architectures, and structural career scaling.",
   },
   {
@@ -34,7 +34,7 @@ const SPEAKERS_DATA = [
     company: "Cre8 Studio",
     trackBadge: "Portfolio Building",
     image: "/Images/speaker3.jpg",
-    color: "#FAAB00", 
+    color: "#FAAB00",
     bio: "Interaction designer specializing in design systems and scalable user experiences. Imran guides engineers and designers on how to structure practical project case studies that grab recruiters' attention.",
   },
   {
@@ -44,7 +44,7 @@ const SPEAKERS_DATA = [
     company: "CloudSphere",
     trackBadge: "Visibility Lab",
     image: "/images/speaker4.jpg",
-    color: "#34A853", 
+    color: "#34A853",
     bio: "Community strategist helping technical builders optimize their global digital presence. Blessing specializes in brand engineering, open-source visibility, and helping remote developers get scouted directly on LinkedIn.",
   },
   {
@@ -54,7 +54,7 @@ const SPEAKERS_DATA = [
     company: "TalentMatch Global",
     trackBadge: "CV Review Booths",
     image: "/Images/speaker1.jpg",
-    color: "#4285F4", 
+    color: "#4285F4",
     bio: "Ex-Google Senior Engineer with over 8 years of experience vetting engineering talent across Europe and Africa. Specialist in clean technical resume mapping, portfolio architectures, and structural career scaling.",
   },
   {
@@ -64,7 +64,7 @@ const SPEAKERS_DATA = [
     company: "Cre8 Studio",
     trackBadge: "Portfolio Building",
     image: "/Images/speaker3.jpg",
-    color: "#FAAB00", 
+    color: "#FAAB00",
     bio: "Interaction designer specializing in design systems and scalable user experiences. Imran guides engineers and designers on how to structure practical project case studies that grab recruiters' attention.",
   },
   {
@@ -74,7 +74,7 @@ const SPEAKERS_DATA = [
     company: "CloudSphere",
     trackBadge: "Visibility Lab",
     image: "/images/speaker4.jpg",
-    color: "#34A853", 
+    color: "#34A853",
     bio: "Community strategist helping technical builders optimize their global digital presence. Blessing specializes in brand engineering, open-source visibility, and helping remote developers get scouted directly on LinkedIn.",
   },
   {
@@ -94,24 +94,45 @@ export default function Speakers() {
 
   return (
     <section className="w-full bg-[#F5F5F5] py-24 px-4 md:px-8 border-b-4 border-black relative select-none text-[#1E1E1E]">
-      <div className="max-w-7xl mx-auto">
-        
+      <div className="max-w-6xl mx-auto">
+
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 border-b-4 border-black pb-8">
-          <div>
-            <div className="bg-white/40 px-3 py-1 border-2 border-black rounded-xl w-fit mb-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-              <span className="text-xs font-outfit uppercase tracking-widest text-[#EA4336] font-extrabold block">
-                EXPERT SELECTION
-              </span>
+        <div className="w-full mb-16 pb-4 flex flex-col gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 w-full">
+            <div className="flex-1">
+              <div className="inline-block bg-white border-4 border-black px-4 py-1.5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-xl self-start">
+                <span className="text-xs md:text-sm font-outfit uppercase tracking-wider text-[#EA4336] font-black block">
+                  EXPERT SELECTION
+                </span>
+              </div>
             </div>
-            
-            <h2 className="text-5xl md:text-7xl font-anton text-[#1E1E1E] uppercase tracking-tighter leading-none">
-              MINDSET SPEAKERS
-            </h2>
+
+            <div className="hidden md:flex w-full md:w-[40%] justify-start">
+              <div className="w-full max-w-[280px] md:max-w-[320px]">
+                <Image
+                  src="/solid-shape.png"
+                  alt="Design Shape"
+                  width={400}
+                  height={80}
+                  className="h-auto w-full object-contain block"
+                />
+              </div>
+            </div>
           </div>
-          <p className="text-base md:text-xl text-[#1E1E1E]/80 font-outfit font-bold max-w-sm leading-snug">
-            Click on any facilitator card to inspect their background, operational focus track, and workshop layout specifications.
-          </p>
+
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 w-full">
+            <div className="flex-1">
+              <h2 className="text-5xl md:text-7xl font-anton text-[#1E1E1E] uppercase tracking-tighter leading-none m-0">
+                MINDSET SPEAKERS
+              </h2>
+            </div>
+
+            <div className="w-full md:w-[40%] flex justify-start">
+              <p className="text-sm md:text-base text-[#1E1E1E]/80 font-outfit font-black max-w-sm leading-snug text-left">
+                Click on any facilitator card to inspect their background, operational focus track, and workshop layout specifications.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Speakers Grid Layout*/}
@@ -133,8 +154,8 @@ export default function Speakers() {
               <div className="absolute -bottom-2 -right-2 w-3.5 h-3.5 bg-white border-2 border-black z-20 rounded-sm" />
 
               {/* Dynamic Inner Structural Accent Frame Line */}
-              <div 
-                className="absolute inset-1.5 border-2 pointer-events-none z-10 transition-transform duration-300 rounded-xl" 
+              <div
+                className="absolute inset-1.5 border-2 pointer-events-none z-10 transition-transform duration-300 rounded-xl"
                 style={{ borderColor: speaker.color }}
               />
 
@@ -177,7 +198,7 @@ export default function Speakers() {
       <AnimatePresence>
         {selectedSpeaker && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            
+
             {/* Backdrop Shadow Block Layer */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -196,8 +217,8 @@ export default function Speakers() {
               className="relative w-full max-w-2xl bg-[#F5F5F5] border-4 border-black rounded-[2rem] p-6 md:p-8 z-10 flex flex-col md:flex-row gap-6 shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] overflow-hidden"
             >
               {/* Dynamic top edge border strip based on theme color context */}
-              <div 
-                className="absolute top-0 left-0 right-0 h-4 border-b-2 border-black" 
+              <div
+                className="absolute top-0 left-0 right-0 h-4 border-b-2 border-black"
                 style={{ backgroundColor: selectedSpeaker.color }}
               />
 
@@ -224,23 +245,23 @@ export default function Speakers() {
               {/* Content Column Layout Side Right */}
               <div className="flex flex-col justify-between flex-grow pt-6">
                 <div>
-                  <span 
+                  <span
                     className="text-xs font-outfit font-extrabold uppercase tracking-widest px-3 py-1 border-2 border-black bg-white rounded-md inline-block mb-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                     style={{ color: selectedSpeaker.color }}
                   >
                     {selectedSpeaker.trackBadge}
                   </span>
-                  
+
                   <h3 className="text-3xl font-anton text-[#1E1E1E] uppercase tracking-wide leading-none mb-1">
                     {selectedSpeaker.name}
                   </h3>
-                  
+
                   <p className="text-sm font-outfit text-[#1E1E1E]/90 font-bold mb-4">
                     {selectedSpeaker.role} <span className="text-black font-black">@ {selectedSpeaker.company}</span>
                   </p>
-                  
+
                   <hr className="border-2 border-black mb-4" />
-                  
+
                   <p className="text-sm md:text-base font-outfit text-[#1E1E1E] font-medium leading-relaxed">
                     {selectedSpeaker.bio}
                   </p>
