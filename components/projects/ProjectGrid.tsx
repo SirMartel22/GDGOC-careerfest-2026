@@ -27,18 +27,18 @@ function groupProjects(projects: Project[]): Grouped {
 }
 
 const gridVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.04
-    }
-  }
+	hidden: { opacity: 0 },
+	show: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.04
+		}
+	}
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } }
+	hidden: { opacity: 0, y: 10 },
+	show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } }
 };
 
 export const ProjectGrid: React.FC<{ projects: Project[] }> = ({ projects }) => {
@@ -53,7 +53,7 @@ export const ProjectGrid: React.FC<{ projects: Project[] }> = ({ projects }) => 
 						<span className="px-4 py-2 bg-white border-2 border-black rounded-2xl font-anton uppercase text-sm">{cat}</span>
 						<span className="text-zinc-600 text-sm">({grouped[cat].length})</span>
 					</div>
-					<motion.div 
+					<motion.div
 						variants={gridVariants}
 						initial="hidden"
 						animate="show"

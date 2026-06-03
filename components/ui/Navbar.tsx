@@ -15,11 +15,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/#about" },
-    { name: "RSVP", href: "/#register" },
-    // { name: "Generate DP", href: "/get-dp" },
+    { name: "Generate DP", href: "/get-dp" },
     { name: "Venue", href: "/#schedule" },
   ];
+
+  const REGISTRATION_URL = "https://gdg.community.dev/events/details/google-gdg-on-campus-university-of-ilorin-ilorin-nigeria-presents-careerfest-2026-career-ready-whats-next/";
 
   return (
     <>
@@ -41,28 +41,46 @@ const Navbar = () => {
 
           {/* Desktop Navigation - Middle (Centered) */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name}
-                href={link.href} 
-                className="text-white hover:text-[#FAAB00] font-anton uppercase text-lg transition-colors tracking-wider"
-                style={{ 
-                  textShadow: "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000" 
-                }}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              if (link.name === "Venue") {
+                return (
+                  <button 
+                    key={link.name}
+                    onClick={() => setShowDirection(true)}
+                    className="text-white hover:text-[#FAAB00] font-anton uppercase text-lg transition-colors tracking-wider bg-transparent border-none cursor-pointer p-0"
+                    style={{ 
+                      textShadow: "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000" 
+                    }}
+                  >
+                    {link.name}
+                  </button>
+                );
+              }
+              return (
+                <Link 
+                  key={link.name}
+                  href={link.href} 
+                  className="text-white hover:text-[#FAAB00] font-anton uppercase text-lg transition-colors tracking-wider"
+                  style={{ 
+                    textShadow: "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000" 
+                  }}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </div>
 
           {/* CTA Section - Right */}
           <div className="hidden md:block">
-            <button 
-              onClick={() => setShowModal(true)}
-              className="bg-[#EA4336] text-white px-8 py-2.5 rounded-2xl font-anton text-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all uppercase tracking-wide cursor-pointer"
+            <a 
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#EA4336] text-white px-8 py-2.5 rounded-2xl font-anton text-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all uppercase tracking-wide cursor-pointer"
             >
-              Submit Project
-            </button>
+              RSVP
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -78,25 +96,41 @@ const Navbar = () => {
         {/* Mobile Navigation Menu */}
         <div className={`md:hidden absolute top-0 left-0 right-0 bg-[#34A853] border-b border-[#2d9147] transition-all duration-300 overflow-hidden ${isOpen ? 'h-screen opacity-100 pt-20' : 'h-0 opacity-0'}`}>
           <div className="flex flex-col p-8 gap-8 items-center justify-center h-full">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name}
-                href={link.href} 
-                className="text-white font-anton uppercase text-3xl tracking-widest hover:text-[#FAAB00] transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <button 
-              onClick={() => {
-                setIsOpen(false);
-                setShowModal(true);
-              }}
-              className="w-full max-w-xs text-center bg-[#EA4336] text-white px-8 py-5 rounded-2xl font-anton text-2xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] uppercase tracking-wide mt-4"
+            {navLinks.map((link) => {
+              if (link.name === "Venue") {
+                return (
+                  <button 
+                    key={link.name}
+                    onClick={() => {
+                      setIsOpen(false);
+                      setShowDirection(true);
+                    }}
+                    className="text-white font-anton uppercase text-3xl tracking-widest hover:text-[#FAAB00] transition-colors bg-transparent border-none cursor-pointer"
+                  >
+                    {link.name}
+                  </button>
+                );
+              }
+              return (
+                <Link 
+                  key={link.name}
+                  href={link.href} 
+                  className="text-white font-anton uppercase text-3xl tracking-widest hover:text-[#FAAB00] transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+            <a 
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="w-full max-w-xs text-center bg-[#EA4336] text-white px-8 py-5 rounded-2xl font-anton text-2xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] uppercase tracking-wide mt-4 cursor-pointer"
             >
-              Submit Project
-            </button>
+              RSVP
+            </a>
           </div>
         </div>
       </nav>
