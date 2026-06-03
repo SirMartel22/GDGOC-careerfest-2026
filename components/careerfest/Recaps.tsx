@@ -40,7 +40,7 @@ const RECAP_ITEMS = [
     id: 6,
     type: "image",
     src: "/images/recap5.jpg",
-    alt: "Massive crowd of student builders listening to industry insights",
+    alt: "Massive crowd of student builders listening to industry insights in Career Fest 2025",
   },
   {
     id: 7,
