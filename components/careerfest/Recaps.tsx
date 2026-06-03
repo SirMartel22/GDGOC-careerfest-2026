@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+
+
 // CareerFest 2025 Key Metrics & Recaps
 const RECAP_ITEMS = [
   {
@@ -15,31 +17,31 @@ const RECAP_ITEMS = [
   {
     id: 2,
     type: "image",
-    src: "/images/recap1.jpg",
+    src: "/Images/recap1.jpg",
     alt: "Massive crowd of student builders listening to industry insights",
   },
   {
     id: 3,
     type: "image",
-    src: "/images/recap2.jpg",
+    src: "/Images/recap2.jpg",
     alt: "Massive crowd of student builders listening to industry insights",
   },
   {
     id: 4,
     type: "image",
-    src: "/images/recap3.jpg",
+    src: "/Images/recap3.jpg",
     alt: "Massive crowd of student builders listening to industry insights",
   },
   {
     id: 5,
     type: "image",
-    src: "/images/recap4.jpg",
+    src: "/Images/recap4.jpg",
     alt: "Massive crowd of student builders listening to industry insights",
   },
   {
     id: 6,
     type: "image",
-    src: "/images/recap5.jpg",
+    src: "/Images/recap5.jpg",
     alt: "Massive crowd of student builders listening to industry insights in Career Fest 2025",
   },
   {
@@ -52,25 +54,25 @@ const RECAP_ITEMS = [
   {
     id: 8,
     type: "image",
-    src: "/images/recap6.jpg",
+    src: "/Images/recap6.jpg",
     alt: "Speakers sharing career growth paths on stage",
   },
   {
     id: 9,
     type: "image",
-    src: "/images/recap7.jpg",
+    src: "/Images/recap7.jpg",
     alt: "Speakers sharing career growth paths on stage",
   },
   {
     id: 10,
     type: "image",
-    src: "/images/recap8.jpg",
+    src: "/Images/recap8.jpg",
     alt: "Speakers sharing career growth paths on stage",
   },
   {
     id: 11,
     type: "image",
-    src: "/images/recap9.jpg",
+    src: "/Images/recap9.jpg",
     alt: "Speakers sharing career growth paths on stage",
   },
   {
@@ -83,19 +85,19 @@ const RECAP_ITEMS = [
   {
     id: 13,
     type: "image",
-    src: "/images/recap10.jpg",
+    src: "/Images/recap10.jpg",
     alt: "Interactive breakout networking circles",
   },
   {
     id: 14,
     type: "image",
-    src: "/images/recap11.jpg",
+    src: "/Images/recap11.jpg",
     alt: "Interactive breakout networking circles",
   },
   {
     id: 15,
     type: "image",
-    src: "/images/recap12.jpg",
+    src: "/Images/recap12.jpg",
     alt: "Interactive breakout networking circles",
   },
   {
@@ -108,13 +110,13 @@ const RECAP_ITEMS = [
   {
     id: 17,
     type: "image",
-    src: "/images/recap13.jpg",
+    src: "/Images/recap13.jpg",
     alt: "Group photograph of energized community members",
   },
   {
     id: 18,
     type: "image",
-    src: "/images/recap14.jpg",
+    src: "/Images/recap14.jpg",
     alt: "Group photograph of energized community members",
   },
 ];
@@ -186,14 +188,23 @@ export default function Recaps() {
                 </div>
               ) : (
                 <div className="w-full h-full relative overflow-hidden border-2 border-black bg-gray-100 rounded-xl group">
-                  <Image
+                  {/* <Image
                     src={item.src!}
                     alt={item.alt!}
                     fill
                     sizes="340px"
                     className="object-cover rounded-xl transition-transform duration-500 scale-100 group-hover:scale-105"
                     priority={idx < 4}
-                  />
+                  /> */}
+                  {item.src && item.alt && (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={340}
+                      height={380}
+                      className="object-cover rounded-xl w-full h-full"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-black/5 pointer-events-none rounded-xl" />
                 </div>
               )}
