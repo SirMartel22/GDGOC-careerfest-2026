@@ -138,14 +138,17 @@ export default function Hero() {
       });
     });
 
-    const mouse = Mouse.create(render.canvas);
-    const mouseConstraint = MouseConstraint.create(engine, {
-      mouse: mouse,
-      constraint: { stiffness: 0.2, render: { visible: false } }
-    });
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    if (!isMobile) {
+      const mouse = Mouse.create(render.canvas);
+      const mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: { stiffness: 0.2, render: { visible: false } }
+      });
 
-    Composite.add(world, mouseConstraint);
-    render.mouse = mouse;
+      Composite.add(world, mouseConstraint);
+      render.mouse = mouse;
+    }
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -163,7 +166,7 @@ export default function Hero() {
       className="relative w-full h-[85vh] min-h-[550px] bg-[#F5F5F5] overflow-hidden flex flex-col items-center justify-start pt-10 md:justify-center md:pt-20 border-b-4 border-[#1E1E1E] px-4 select-none"
     >
       {/* Physics Canvas Layer */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-10 pointer-events-auto" />
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-10 pointer-events-none md:pointer-events-auto" />
 
       {/* Hero Content Block */}
       <div className="relative z-0 text-center max-w-4xl flex flex-col items-center pointer-events-none px-4">
