@@ -88,7 +88,7 @@ export default function Sessions() {
               </div>
             </div>
 
-            <div className="w-full md:w-[40%] flex justify-start">
+            <div className="hidden md:flex w-full md:w-[40%] justify-start">
               <div className="w-full max-w-[280px] md:max-w-[320px]">
                 <Image
                   src="/solid-shape.png"

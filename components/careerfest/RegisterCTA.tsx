@@ -27,13 +27,13 @@ export default function RegisterCTA() {
             alt="Design Shape"
             width={400}
             height={30}
-            className="h-auto opacity-80 block w-auto max-w-[280px] md:max-w-[400px]"
+            className="h-auto opacity-80 hidden md:block w-auto max-w-[280px] md:max-w-[400px]"
           />
         </div>
 
         {/* Centered CTA Content */}
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <h2 className="text-5xl md:text-8xl font-anton uppercase tracking-tighter leading-none mb-6 text-[#1E1E1E]">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-left md:items-center">
+          <h2 className="text-5xl text-left md:text-center md:text-8xl font-anton uppercase tracking-tighter leading-none mb-6 text-[#1E1E1E]">
             DON&apos;T JUST BUILD.<br />
             GET HIRED.
           </h2>
@@ -49,7 +49,7 @@ export default function RegisterCTA() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center gap-4 bg-[#34A853] text-white font-anton text-2xl md:text-4xl uppercase tracking-wide px-10 py-6 border-4 border-black rounded-2xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 cursor-pointer"
+            className="group relative w-2/4 md:w-1/4 inline-flex items-center gap-4 bg-[#34A853] text-white font-anton text-2xl md:text-4xl uppercase tracking-wide px-10 py-4 border-4 border-black rounded-2xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 cursor-pointer"
           >
             RSVP
             <ArrowUpRight className="w-8 h-8 md:w-10 md:h-10 stroke-[3] transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />

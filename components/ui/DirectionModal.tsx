@@ -13,7 +13,7 @@ const DirectionModal = ({ isOpen, onClose }: DirectionModalProps) => {
   const [location, setLocation] = useState("");
 
   const handleDirectMe = () => {
-    const destination = "University of Ilorin";
+    const destination = "University of Ilorin Main Auditorium";
     const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(location)}&destination=${encodeURIComponent(destination)}`;
     window.open(mapsUrl, "_blank");
     onClose();
@@ -77,7 +77,7 @@ const DirectionModal = ({ isOpen, onClose }: DirectionModalProps) => {
               </button>
               
               <p className="text-center text-sm font-bold text-gray-400 italic">
-                Venue: University of Ilorin, Main Campus.
+                Venue: University of Ilorin Main Auditorium.
               </p>
             </div>
           </motion.div>

@@ -127,7 +127,7 @@ export default function Recaps() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-3">
-            <h2 className="text-3xl md:text-5xl font-anton text-[#1E1E1E] uppercase tracking-tighter">
+            <h2 className="text-5xl md:text-5xl font-anton text-[#1E1E1E] uppercase tracking-tighter">
               Careerfest 2025 Recaps:
             </h2>
           </div>

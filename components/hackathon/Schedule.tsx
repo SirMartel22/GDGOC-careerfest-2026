@@ -64,7 +64,7 @@ const Schedule = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="space-y-6">
-            <h2 className="text-6xl md:text-8xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter">
+            <h2 className="text-5xl md:text-8xl font-anton text-[#1E1E1E] uppercase leading-[0.9] tracking-tighter">
               Mark Your <br /> Calendar.
             </h2>
           </div>
@@ -74,7 +74,7 @@ const Schedule = () => {
             <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#4285F4] opacity-10 rounded-2xl blur-2xl" />
             <div className="space-y-8">
               <p className="text-[#1E1E1E] text-xl leading-tight">
-                <span className="font-bold">Pre-Career Fest Venue:</span> <span className="font-medium text-gray-600">Mooth Court, Faculty of Law, University of Ilorin</span>
+                <span className="font-bold">Pre-Career Fest Venue:</span> <span className="font-medium text-gray-600">University of Ilorin Main Auditorium</span>
               </p>
               <div className="flex flex-row items-center gap-4">
                 <button

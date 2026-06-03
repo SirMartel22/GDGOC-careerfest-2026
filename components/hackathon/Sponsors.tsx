@@ -20,7 +20,7 @@ const Sponsors = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="space-y-6">
-            <h2 className="text-6xl md:text-8xl font-anton text-white uppercase leading-[0.9] tracking-tighter">
+            <h2 className="text-5xl md:text-8xl font-anton text-white uppercase leading-[0.9] tracking-tighter">
               Built With <br /> Support From
             </h2>
           </div>
