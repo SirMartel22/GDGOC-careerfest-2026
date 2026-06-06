@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
+import Toast from "./ui/Toast";
 
 const DPGenerator = () => {
   const [name, setName] = useState("");
@@ -11,6 +12,7 @@ const DPGenerator = () => {
   const [offsetX, setOffsetX] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
   const [isCropping, setIsCropping] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,6 +151,9 @@ const DPGenerator = () => {
     setScale(1);
     setOffsetX(0);
     setOffsetY(0);
+
+    // Show success toast notification
+    setShowToast(true);
   };
 
   return (
@@ -349,6 +354,11 @@ const DPGenerator = () => {
           )}
         </div>
       </div>
+      <Toast
+        message="Your Display Picture has been downloaded successfully!"
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   );
 };
