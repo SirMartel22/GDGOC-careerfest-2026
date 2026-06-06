@@ -17,7 +17,7 @@ export default function Home() {
       <Hero />
       <Recaps />
       <Sessions />
-      <Speakers />
+      {/* <Speakers /> */}
       <WhatToExpect />
       <RegisterCTA />
       <FAQ />
