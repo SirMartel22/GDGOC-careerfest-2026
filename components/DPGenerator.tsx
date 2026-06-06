@@ -4,6 +4,14 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
 import Toast from "./ui/Toast";
 
+const isIOSDevice = () => {
+  if (typeof window === "undefined" || typeof navigator === "undefined") return false;
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+};
+
 const DPGenerator = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState<string | null>(null);
@@ -13,6 +21,9 @@ const DPGenerator = () => {
   const [offsetY, setOffsetY] = useState(0);
   const [isCropping, setIsCropping] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastTitle, setToastTitle] = useState("Success!");
+  const [toastType, setToastType] = useState<"success" | "info">("success");
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,8 +148,36 @@ const DPGenerator = () => {
     ctx.fillText(name, textX, textY);
   };
 
-  const downloadDP = () => {
+  const downloadDP = async () => {
     if (!previewUrl) return;
+
+    if (isIOSDevice()) {
+      try {
+        const response = await fetch(previewUrl);
+        const blob = await response.blob();
+        const file = new File([blob], `${name || "careerfest-2026"}-dp.png`, {
+          type: "image/png",
+        });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: "My CareerFest 2026 DP",
+          });
+          return;
+        }
+      } catch (error) {
+        console.error("Native share failed", error);
+      }
+
+      // iOS Fallback (if share sheet is cancelled, unsupported, or inside a restricted WebView)
+      setToastTitle("How to Save");
+      setToastMessage("iOS Users: Tap & hold (long press) the image preview below/on the right to save it directly to your Photos.");
+      setToastType("info");
+      setShowToast(true);
+      return;
+    }
+
     const link = document.createElement("a");
     link.download = `${name || "careerfest-2026"}-dp.png`;
     link.href = previewUrl;
@@ -153,6 +192,9 @@ const DPGenerator = () => {
     setOffsetY(0);
 
     // Show success toast notification
+    setToastTitle("Success!");
+    setToastMessage("Your Display Picture has been downloaded successfully!");
+    setToastType("success");
     setShowToast(true);
   };
 
@@ -355,9 +397,12 @@ const DPGenerator = () => {
         </div>
       </div>
       <Toast
-        message="Your Display Picture has been downloaded successfully!"
+        message={toastMessage}
+        title={toastTitle}
+        type={toastType}
         isVisible={showToast}
         onClose={() => setShowToast(false)}
+        duration={toastType === "info" ? 7000 : 4000}
       />
     </div>
   );
