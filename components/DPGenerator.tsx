@@ -4,6 +4,26 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
 import Toast from "./ui/Toast";
 
+const isIOSDevice = () => {
+  if (typeof window === "undefined" || typeof navigator === "undefined") return false;
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+};
+
+const dataURLtoBlob = (dataurl: string) => {
+  const arr = dataurl.split(",");
+  const mime = arr[0].match(/:(.*?);/)![1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], { type: mime });
+};
+
 const DPGenerator = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState<string | null>(null);
@@ -13,6 +33,9 @@ const DPGenerator = () => {
   const [offsetY, setOffsetY] = useState(0);
   const [isCropping, setIsCropping] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastTitle, setToastTitle] = useState("Success!");
+  const [toastType, setToastType] = useState<"success" | "info">("success");
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,14 +160,96 @@ const DPGenerator = () => {
     ctx.fillText(name, textX, textY);
   };
 
-  const downloadDP = () => {
+  // const downloadDP = async () => {
+  //   if (!previewUrl) return;
+
+  //   let shared = false;
+  //   if (isIOSDevice()) {
+  //     try {
+  //       const blob = dataURLtoBlob(previewUrl);
+  //       const file = new File([blob], `${name || "careerfest-2026"}-dp.png`, {
+  //         type: "image/png",
+  //       });
+
+  //       if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+  //         await navigator.share({
+  //           files: [file],
+  //           title: "My CareerFest 2026 DP",
+  //         });
+  //         shared = true;
+  //       }
+  //     } catch (error) {
+  //       console.error("Native share failed", error);
+  //     }
+  //   }
+
+  //   if (shared) return;
+
+  //   // Trigger standard download for non-iOS or as fallback for iOS when share fails/cancels
+  //   const link = document.createElement("a");
+  //   link.download = `${name || "careerfest-2026"}-dp.png`;
+  //   link.href = previewUrl;
+  //   link.click();
+
+  //   // Reset crop states/inputs ONLY for non-iOS users (iOS users need the preview to remain on screen for long-press option)
+  //   if (!isIOSDevice()) {
+  //     setName("");
+  //     setImage(null);
+  //     setIsCropping(false);
+  //     setScale(1);
+  //     setOffsetX(0);
+  //     setOffsetY(0);
+
+  //     // Show success toast notification
+  //     setToastTitle("Success!");
+  //     setToastMessage("Your Display Picture has been downloaded successfully!");
+  //     setToastType("success");
+  //   } else {
+  //     // iOS fallback helper toast notification
+  //     setToastTitle("How to Save");
+  //     setToastMessage("Tap & hold (long press) the image preview to save it directly to your Photos app.");
+  //     setToastType("info");
+  //   }
+
+  //   setShowToast(true);
+  // };
+
+  const downloadDP = async () => {
     if (!previewUrl) return;
+
+    const ios = isIOSDevice();
+
+    if (ios) {
+      try {
+        const blob = dataURLtoBlob(previewUrl);
+        const file = new File([blob], `${name || "careerfest-2026"}-dp.png`, {
+          type: "image/png",
+        });
+
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: "My CareerFest 2026 DP" });
+
+          // iOS share succeeded — show hint toast and exit
+          setToastTitle("How to Save");
+          setToastMessage("Tap & hold (long press) the image preview to save it directly to your Photos app.");
+          setToastType("info");
+          setShowToast(true);
+          return; // ✅ Only return early on iOS after a successful share
+        }
+      } catch (error) {
+        // Share was cancelled or failed — fall through to anchor download below
+        console.error("Native share failed or cancelled", error);
+      }
+    }
+
+    // ✅ Standard download for: Chrome, Firefox, Safari desktop, and iOS fallback
     const link = document.createElement("a");
     link.download = `${name || "careerfest-2026"}-dp.png`;
     link.href = previewUrl;
+    document.body.appendChild(link); // ← important for Firefox compatibility
     link.click();
+    document.body.removeChild(link);
 
-    // Completely clear name, uploaded photo, and reset crop states on download
     setName("");
     setImage(null);
     setIsCropping(false);
@@ -152,7 +257,9 @@ const DPGenerator = () => {
     setOffsetX(0);
     setOffsetY(0);
 
-    // Show success toast notification
+    setToastTitle("Success!");
+    setToastMessage("Your Display Picture has been downloaded successfully!");
+    setToastType("success");
     setShowToast(true);
   };
 
@@ -355,9 +462,12 @@ const DPGenerator = () => {
         </div>
       </div>
       <Toast
-        message="Your Display Picture has been downloaded successfully!"
+        message={toastMessage}
+        title={toastTitle}
+        type={toastType}
         isVisible={showToast}
         onClose={() => setShowToast(false)}
+        duration={toastType === "info" ? 7000 : 4000}
       />
     </div>
   );
