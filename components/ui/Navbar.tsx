@@ -3,15 +3,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { HiBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Modal from "./Modal";
 import DirectionModal from "./DirectionModal";
 import SubmitForm from "../submit/SubmitForm";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showDirection, setShowDirection] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -63,6 +66,12 @@ const Navbar = () => {
                   className="text-white hover:text-[#FAAB00] font-anton uppercase text-lg transition-colors tracking-wider"
                   style={{ 
                     textShadow: "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000" 
+                  }}
+                  onClick={(e) => {
+                    if (link.name === "Home" && (pathname === "/get-dp" || pathname === "/")) {
+                      e.preventDefault();
+                      setShowComingSoon(true);
+                    }
                   }}
                 >
                   {link.name}
@@ -116,7 +125,15 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href} 
                   className="text-white font-anton uppercase text-3xl tracking-widest hover:text-[#FAAB00] transition-colors"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    if (link.name === "Home" && (pathname === "/get-dp" || pathname === "/")) {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      setShowComingSoon(true);
+                    } else {
+                      setIsOpen(false);
+                    }
+                  }}
                 >
                   {link.name}
                 </Link>
@@ -159,6 +176,13 @@ const Navbar = () => {
       <DirectionModal 
         isOpen={showDirection}
         onClose={() => setShowDirection(false)}
+      />
+
+      <Modal
+        isOpen={showComingSoon}
+        onClose={() => setShowComingSoon(false)}
+        title="Coming Soon"
+        message="Check back later!"
       />
     </>
   );
