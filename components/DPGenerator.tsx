@@ -12,6 +12,18 @@ const isIOSDevice = () => {
   );
 };
 
+const dataURLtoBlob = (dataurl: string) => {
+  const arr = dataurl.split(",");
+  const mime = arr[0].match(/:(.*?);/)![1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], { type: mime });
+};
+
 const DPGenerator = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState<string | null>(null);
@@ -148,42 +160,96 @@ const DPGenerator = () => {
     ctx.fillText(name, textX, textY);
   };
 
+  // const downloadDP = async () => {
+  //   if (!previewUrl) return;
+
+  //   let shared = false;
+  //   if (isIOSDevice()) {
+  //     try {
+  //       const blob = dataURLtoBlob(previewUrl);
+  //       const file = new File([blob], `${name || "careerfest-2026"}-dp.png`, {
+  //         type: "image/png",
+  //       });
+
+  //       if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+  //         await navigator.share({
+  //           files: [file],
+  //           title: "My CareerFest 2026 DP",
+  //         });
+  //         shared = true;
+  //       }
+  //     } catch (error) {
+  //       console.error("Native share failed", error);
+  //     }
+  //   }
+
+  //   if (shared) return;
+
+  //   // Trigger standard download for non-iOS or as fallback for iOS when share fails/cancels
+  //   const link = document.createElement("a");
+  //   link.download = `${name || "careerfest-2026"}-dp.png`;
+  //   link.href = previewUrl;
+  //   link.click();
+
+  //   // Reset crop states/inputs ONLY for non-iOS users (iOS users need the preview to remain on screen for long-press option)
+  //   if (!isIOSDevice()) {
+  //     setName("");
+  //     setImage(null);
+  //     setIsCropping(false);
+  //     setScale(1);
+  //     setOffsetX(0);
+  //     setOffsetY(0);
+
+  //     // Show success toast notification
+  //     setToastTitle("Success!");
+  //     setToastMessage("Your Display Picture has been downloaded successfully!");
+  //     setToastType("success");
+  //   } else {
+  //     // iOS fallback helper toast notification
+  //     setToastTitle("How to Save");
+  //     setToastMessage("Tap & hold (long press) the image preview to save it directly to your Photos app.");
+  //     setToastType("info");
+  //   }
+
+  //   setShowToast(true);
+  // };
+
   const downloadDP = async () => {
     if (!previewUrl) return;
 
-    if (isIOSDevice()) {
+    const ios = isIOSDevice();
+
+    if (ios) {
       try {
-        const response = await fetch(previewUrl);
-        const blob = await response.blob();
+        const blob = dataURLtoBlob(previewUrl);
         const file = new File([blob], `${name || "careerfest-2026"}-dp.png`, {
           type: "image/png",
         });
 
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            files: [file],
-            title: "My CareerFest 2026 DP",
-          });
-          return;
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: "My CareerFest 2026 DP" });
+
+          // iOS share succeeded — show hint toast and exit
+          setToastTitle("How to Save");
+          setToastMessage("Tap & hold (long press) the image preview to save it directly to your Photos app.");
+          setToastType("info");
+          setShowToast(true);
+          return; // ✅ Only return early on iOS after a successful share
         }
       } catch (error) {
-        console.error("Native share failed", error);
+        // Share was cancelled or failed — fall through to anchor download below
+        console.error("Native share failed or cancelled", error);
       }
-
-      // iOS Fallback (if share sheet is cancelled, unsupported, or inside a restricted WebView)
-      setToastTitle("How to Save");
-      setToastMessage("iOS Users: Tap & hold (long press) the image preview below/on the right to save it directly to your Photos.");
-      setToastType("info");
-      setShowToast(true);
-      return;
     }
 
+    // ✅ Standard download for: Chrome, Firefox, Safari desktop, and iOS fallback
     const link = document.createElement("a");
     link.download = `${name || "careerfest-2026"}-dp.png`;
     link.href = previewUrl;
+    document.body.appendChild(link); // ← important for Firefox compatibility
     link.click();
+    document.body.removeChild(link);
 
-    // Completely clear name, uploaded photo, and reset crop states on download
     setName("");
     setImage(null);
     setIsCropping(false);
@@ -191,7 +257,6 @@ const DPGenerator = () => {
     setOffsetX(0);
     setOffsetY(0);
 
-    // Show success toast notification
     setToastTitle("Success!");
     setToastMessage("Your Display Picture has been downloaded successfully!");
     setToastType("success");
