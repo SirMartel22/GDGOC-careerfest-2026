@@ -67,12 +67,6 @@ const Navbar = () => {
                   style={{ 
                     textShadow: "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000" 
                   }}
-                  onClick={(e) => {
-                    if (link.name === "Home" && (pathname === "/get-dp" || pathname === "/")) {
-                      e.preventDefault();
-                      setShowComingSoon(true);
-                    }
-                  }}
                 >
                   {link.name}
                 </Link>
@@ -125,14 +119,8 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href} 
                   className="text-white font-anton uppercase text-3xl tracking-widest hover:text-[#FAAB00] transition-colors"
-                  onClick={(e) => {
-                    if (link.name === "Home" && (pathname === "/get-dp" || pathname === "/")) {
-                      e.preventDefault();
-                      setIsOpen(false);
-                      setShowComingSoon(true);
-                    } else {
-                      setIsOpen(false);
-                    }
+                  onClick={() => {
+                    setIsOpen(false);
                   }}
                 >
                   {link.name}
