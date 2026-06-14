@@ -30,28 +30,20 @@ const SESSIONS_DATA = [
     align: "right",
   },
   {
-    id: 3,
-    title: "Portfolio Building Sessions",
-    description: "Review engineering and design case studies. Learn how to present projects so they prove your actual capabilities to hiring managers.",
-    icon: Layers,
-    color: "#FAAB00",
-    align: "left",
-  },
-  {
     id: 4,
     title: "Practical Employability Workshops",
     description: "No fluff or boring slides. Deep-dive into technical career growth strategies, networking systems, and landing global roles.",
     icon: Briefcase,
-    color: "#1E1E1E",
-    align: "right",
+    color: "#FAAB00",
+    align: "left",
   },
   {
     id: 5,
     title: "Visibility & Opportunity Sessions",
     description: "Discover what it takes to stand out in a crowded market and optimize your digital presence so recruiters come directly to you.",
     icon: Sparkles,
-    color: "#4285F4",
-    align: "left",
+    color: "#1E1E1E",
+    align: "right",
   },
 ];
 
@@ -110,7 +102,7 @@ export default function Sessions() {
 
             <div className="w-full md:w-[40%] flex justify-start">
               <p className="text-sm md:text-base text-[#1E1E1E] font-outfit font-black max-w-sm leading-snug text-left">
-                Follow the journey through five core hubs engineered to elevate your engineering, design, and placement capabilities.
+                Follow the journey through four core hubs engineered to elevate your engineering, design, and placement capabilities.
               </p>
             </div>
           </div>
