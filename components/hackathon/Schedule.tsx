@@ -74,7 +74,7 @@ const Schedule = () => {
             <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#4285F4] opacity-10 rounded-2xl blur-2xl" />
             <div className="space-y-8">
               <p className="text-[#1E1E1E] text-xl leading-tight">
-                <span className="font-bold">Pre-Career Fest Venue:</span> <span className="font-medium text-gray-600">University of Ilorin Main Auditorium</span>
+                <span className="font-bold">Pre-Career Fest Venue:</span> <span className="font-medium text-gray-600">Unilorin Multipurpose Hall</span>
               </p>
               <div className="flex flex-row items-center gap-4">
                 <button
