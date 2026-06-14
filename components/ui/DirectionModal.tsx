@@ -13,8 +13,10 @@ const DirectionModal = ({ isOpen, onClose }: DirectionModalProps) => {
   const [location, setLocation] = useState("");
 
   const handleDirectMe = () => {
-    const destination = "University of Ilorin Main Auditorium";
-    const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(location)}&destination=${encodeURIComponent(destination)}`;
+    const destination = "Unilorin Multipurpose Hall";
+    const mapsUrl = location 
+      ? `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(location)}&destination=${encodeURIComponent(destination)}`
+      : "https://maps.app.goo.gl/LGEtxeD68QZSfRQ87";
     window.open(mapsUrl, "_blank");
     onClose();
   };
@@ -77,7 +79,7 @@ const DirectionModal = ({ isOpen, onClose }: DirectionModalProps) => {
               </button>
               
               <p className="text-center text-sm font-bold text-gray-400 italic">
-                Venue: University of Ilorin Main Auditorium.
+                Venue: Unilorin Multipurpose Hall.
               </p>
             </div>
           </motion.div>
